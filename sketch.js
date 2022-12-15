@@ -531,25 +531,25 @@ function draw() {
           mark_eye_L[k].mELy * (mark_eye_L[k].mELx - mark_eye_L[k + 1].mELx);
         let d = abs(a * pT[i][j].x + b * pT[i][j].y + c) / sqrt(sq(a) + sq(b));
 
-        // if (
-        //   (mark_eye_L[k].mELx - w / 2 < pT[i][j].x &&
-        //     pT[i][j].x < mark_eye_L[k + 1].mELx + w / 2) ||
-        //   (mark_eye_L[k + 1].mELx - w / 2 < pT[i][j].x &&
-        //     pT[i][j].x < mark_eye_L[k].mELx + w / 2)
-        // ) {
-        //   if (
-        //     (mark_eye_L[k].mELy - w / 2 < pT[i][j].y &&
-        //       pT[i][j].y < mark_eye_L[k + 1].mELy + w / 2) ||
-        //     (mark_eye_L[k + 1].mELy - w / 2 < pT[i][j].y &&
-        //       pT[i][j].y < mark_eye_L[k].mELy + w / 2)
-        //   ) {
-        //     if (d < w / 2) {
-        //       fill(255, 0, 0);
-        //       noStroke();
-        //       ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-        //     }
-        //   }
-        // }
+        if (
+          (mark_eye_L[k].mELx - w / 2 < pT[i][j].x &&
+            pT[i][j].x < mark_eye_L[k + 1].mELx + w / 2) ||
+          (mark_eye_L[k + 1].mELx - w / 2 < pT[i][j].x &&
+            pT[i][j].x < mark_eye_L[k].mELx + w / 2)
+        ) {
+          if (
+            (mark_eye_L[k].mELy - w / 2 < pT[i][j].y &&
+              pT[i][j].y < mark_eye_L[k + 1].mELy + w / 2) ||
+            (mark_eye_L[k + 1].mELy - w / 2 < pT[i][j].y &&
+              pT[i][j].y < mark_eye_L[k].mELy + w / 2)
+          ) {
+            if (d < w / 2) {
+              fill(255, 0, 0);
+              noStroke();
+              ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+            }
+          }
+        }
 
         if (pointPosSet == 1) {
           if (
