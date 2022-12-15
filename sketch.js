@@ -57,7 +57,7 @@ function setup() {
     windowBase = windowHeight;
     w = windowHeight / rows;
     lineLength = windowBase / 10;
-    windowBaseHarf = windowWidth / 2;
+    windowBaseHarf = windowHeight / 2;
   }
 
   //ポイントの位置とテクスチャの配列設定
@@ -294,21 +294,6 @@ function draw() {
               mouseY - height / 2
             );
             if (d < 10) {
-              pP[i][j].x = mouseX - width / 2;
-              pP[i][j].y = mouseY - height / 2;
-            }
-          }
-
-          if (key == "s") {
-            let d = dist(
-              pT[i][j].x,
-              pT[i][j].y,
-              mouseX - width / 2,
-              mouseY - height / 2
-            );
-            if (d < 10) {
-              pT[i][j].x = mouseX - width / 2;
-              pT[i][j].y = mouseY - height / 2;
               pP[i][j].x = mouseX - width / 2;
               pP[i][j].y = mouseY - height / 2;
             }
