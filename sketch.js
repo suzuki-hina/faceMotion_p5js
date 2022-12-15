@@ -6,7 +6,7 @@ let rows = 30 / res;
 let w;
 
 //点の表示・非表示の変数
-let pointColorChanger = false;
+let pointColorChanger = true;
 
 //テクスチャのポイントの変数
 let pP = [];
@@ -468,7 +468,7 @@ function draw() {
       mark_eye_L[0].mELy
     );
 
-    strokeWeight(10);
+    strokeWeight(30);
     for (let i = 0; i < markNum; i++) {
       point(mark_eye_L[i].mELx, mark_eye_L[i].mELy);
     }
@@ -490,12 +490,12 @@ function draw() {
       mark_eye_R[0].mERy
     );
 
-    strokeWeight(10);
+    strokeWeight(30);
     for (let i = 0; i < markNum; i++) {
       point(mark_eye_R[i].mERx, mark_eye_R[i].mERy);
     }
 
-    //左目を囲う図形の描画
+    //口を囲う図形の描画
     strokeWeight(5);
     for (let i = 0; i < markNum - 1; i++) {
       stroke(255);
@@ -514,7 +514,7 @@ function draw() {
       mark_mouth[0].mMy
     );
 
-    strokeWeight(10);
+    strokeWeight(30);
     for (let i = 0; i < markNum; i++) {
       point(mark_mouth[i].mMx, mark_mouth[i].mMy);
     }
