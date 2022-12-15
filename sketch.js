@@ -3,7 +3,7 @@ let img;
 let res = 2;
 let cols = 30 / res;
 let rows = 30 / res;
-let w = windowWidth / cols;
+let w;
 
 //点の表示・非表示の変数
 let pointColorChanger = false;
@@ -40,6 +40,8 @@ let isMove = false;
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   img = loadImage("img/parkFace.png");
+
+  w = windowWidth / cols;
 
   //ポイントの位置の配列設定
   let pPx = -width / 2;
