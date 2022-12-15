@@ -3,7 +3,9 @@ let img;
 let res = 2;
 let cols = 30 / res;
 let rows = 30 / res;
+let windowBase;
 let w;
+let windowBaseHarf;
 
 //点の表示・非表示の変数
 let pointColorChanger = true;
@@ -22,6 +24,7 @@ let markColorChanger = true;
 //囲う線上にある点
 let pointPosSet = false;
 let pOL = [];
+let lineLength;
 
 //アニメーションのフレームの前後
 let iK = [];
@@ -45,112 +48,113 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   img = loadImage("img/parkFace.png");
 
-  w = windowWidth / cols;
+  if(windowWidth <= windowHeight){
+    windowBase = windowWidth;
+    w = windowWidth / cols;
+    lineLength = windowBase / 10;
+    windowBaseHarf = windowWidth / 2;
+  }else if(windowWidth > windowHeight){
+    windowBase = windowHeight;
+    w = windowHeight / rows;
+    lineLength = windowBase / 10;
+    windowBaseHarf = windowWidth / 2;
+  }
 
-  //ポイントの位置の配列設定
+  //ポイントの位置とテクスチャの配列設定
   let pPx = -width / 2;
+  let pTx = -width / 2;
   for (let i = 0; i < cols; i++) {
     pP[i] = [];
+    pT[i] = [];
+
     let pPy = -height / 2;
+    let pTy = -height / 2;
     for (let j = 0; j < rows; j++) {
       pP[i][j] = new pointPosition(pPx, pPy);
       pPy = pPy + w;
-    }
-    pPx = pPx + w;
-  }
-
-  //ポイントのテクスチャの配列設定
-  let pTx = -width / 2;
-  for (let i = 0; i < cols; i++) {
-    pT[i] = [];
-    let pTy = -height / 2;
-    for (let j = 0; j < rows; j++) {
       pT[i][j] = new pointTexture(pTx, pTy);
       pTy = pTy + w;
     }
+    pPx = pPx + w;
     pTx = pTx + w;
   }
 
-  //左目を囲う図形の配列設定
+  //パーツを囲う図形の配列設定
   let mELx = 0;
   let mELy = 0;
-  for (let i = 0; i < markNum; i++) {
-    mark_eye_L[i] = new markEyeLeft(mELx, mELy);
-  }
-
-  //左目を囲う図形の初期位置
-  mark_eye_L[0].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[0].mELy = (width / 10) * 2 - width / 2;
-  mark_eye_L[1].mELx = (width / 10) * 7 - width / 2;
-  mark_eye_L[1].mELy = (width / 10) * 2 - width / 2;
-  mark_eye_L[2].mELx = (width / 10) * 8 - width / 2;
-  mark_eye_L[2].mELy = (width / 10) * 2 - width / 2;
-  mark_eye_L[3].mELx = (width / 10) * 8 - width / 2;
-  mark_eye_L[3].mELy = (width / 10) * 3 - width / 2;
-  mark_eye_L[4].mELx = (width / 10) * 8 - width / 2;
-  mark_eye_L[4].mELy = (width / 10) * 4 - width / 2;
-  mark_eye_L[5].mELx = (width / 10) * 7 - width / 2;
-  mark_eye_L[5].mELy = (width / 10) * 4 - width / 2;
-  mark_eye_L[6].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[6].mELy = (width / 10) * 4 - width / 2;
-  mark_eye_L[7].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[7].mELy = (width / 10) * 3 - width / 2;
-  mark_eye_L[8].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[8].mELy = (width / 10) * 2 - width / 2;
-
-  //右目を囲う図形の配列設定
   let mERx = 0;
   let mERy = 0;
-  for (let i = 0; i < markNum; i++) {
-    mark_eye_R[i] = new markEyeRight(mERx, mERy);
-  }
-
-  //右目を囲う図形の初期位置
-  mark_eye_R[0].mERx = (width / 10) * 2 - width / 2;
-  mark_eye_R[0].mERy = (width / 10) * 2 - width / 2;
-  mark_eye_R[1].mERx = (width / 10) * 3 - width / 2;
-  mark_eye_R[1].mERy = (width / 10) * 2 - width / 2;
-  mark_eye_R[2].mERx = (width / 10) * 4 - width / 2;
-  mark_eye_R[2].mERy = (width / 10) * 2 - width / 2;
-  mark_eye_R[3].mERx = (width / 10) * 4 - width / 2;
-  mark_eye_R[3].mERy = (width / 10) * 3 - width / 2;
-  mark_eye_R[4].mERx = (width / 10) * 4 - width / 2;
-  mark_eye_R[4].mERy = (width / 10) * 4 - width / 2;
-  mark_eye_R[5].mERx = (width / 10) * 3 - width / 2;
-  mark_eye_R[5].mERy = (width / 10) * 4 - width / 2;
-  mark_eye_R[6].mERx = (width / 10) * 2 - width / 2;
-  mark_eye_R[6].mERy = (width / 10) * 4 - width / 2;
-  mark_eye_R[7].mERx = (width / 10) * 2 - width / 2;
-  mark_eye_R[7].mERy = (width / 10) * 3 - width / 2;
-  mark_eye_R[8].mERx = (width / 10) * 2 - width / 2;
-  mark_eye_R[8].mERy = (width / 10) * 2 - width / 2;
-
-  //口を囲う図形の配列設定
   let mMx = 0;
   let mMy = 0;
   for (let i = 0; i < markNum; i++) {
+    mark_eye_L[i] = new markEyeLeft(mELx, mELy);
+    mark_eye_R[i] = new markEyeRight(mERx, mERy);
     mark_mouth[i] = new markMouth(mMx, mMy);
   }
 
+  for (let i = 0; i < 8; i++) {
+    
+  }
+
+  //左目を囲う図形の初期位置
+  mark_eye_L[0].mELx = lineLength * 6 - windowBaseHarf;
+  mark_eye_L[0].mELy = lineLength * 2 - windowBaseHarf;
+  mark_eye_L[1].mELx = lineLength * 7 - windowBaseHarf;
+  mark_eye_L[1].mELy = lineLength * 2 - windowBaseHarf;
+  mark_eye_L[2].mELx = lineLength * 8 - windowBaseHarf;
+  mark_eye_L[2].mELy = lineLength * 2 - windowBaseHarf;
+  mark_eye_L[3].mELx = lineLength * 8 - windowBaseHarf;
+  mark_eye_L[3].mELy = lineLength * 3 - windowBaseHarf;
+  mark_eye_L[4].mELx = lineLength * 8 - windowBaseHarf;
+  mark_eye_L[4].mELy = lineLength * 4 - windowBaseHarf;
+  mark_eye_L[5].mELx = lineLength * 7 - windowBaseHarf;
+  mark_eye_L[5].mELy = lineLength * 4 - windowBaseHarf;
+  mark_eye_L[6].mELx = lineLength * 6 - windowBaseHarf;
+  mark_eye_L[6].mELy = lineLength * 4 - windowBaseHarf;
+  mark_eye_L[7].mELx = lineLength * 6 - windowBaseHarf;
+  mark_eye_L[7].mELy = lineLength * 3 - windowBaseHarf;
+  mark_eye_L[8].mELx = lineLength * 6 - windowBaseHarf;
+  mark_eye_L[8].mELy = lineLength * 2 - windowBaseHarf;
+
+  //右目を囲う図形の初期位置
+  mark_eye_R[0].mERx = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[0].mERy = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[1].mERx = lineLength * 3 - windowBaseHarf;
+  mark_eye_R[1].mERy = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[2].mERx = lineLength * 4 - windowBaseHarf;
+  mark_eye_R[2].mERy = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[3].mERx = lineLength * 4 - windowBaseHarf;
+  mark_eye_R[3].mERy = lineLength * 3 - windowBaseHarf;
+  mark_eye_R[4].mERx = lineLength * 4 - windowBaseHarf;
+  mark_eye_R[4].mERy = lineLength * 4 - windowBaseHarf;
+  mark_eye_R[5].mERx = lineLength * 3 - windowBaseHarf;
+  mark_eye_R[5].mERy = lineLength * 4 - windowBaseHarf;
+  mark_eye_R[6].mERx = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[6].mERy = lineLength * 4 - windowBaseHarf;
+  mark_eye_R[7].mERx = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[7].mERy = lineLength * 3 - windowBaseHarf;
+  mark_eye_R[8].mERx = lineLength * 2 - windowBaseHarf;
+  mark_eye_R[8].mERy = lineLength * 2 - windowBaseHarf;
+
   //口を囲う図形の初期位置
-  mark_mouth[0].mMx = (width / 10) * 2 - width / 2;
-  mark_mouth[0].mMy = (width / 10) * 6 - width / 2;
-  mark_mouth[1].mMx = (width / 10) * 5 - width / 2;
-  mark_mouth[1].mMy = (width / 10) * 6 - width / 2;
-  mark_mouth[2].mMx = (width / 10) * 8 - width / 2;
-  mark_mouth[2].mMy = (width / 10) * 6 - width / 2;
-  mark_mouth[3].mMx = (width / 10) * 8 - width / 2;
-  mark_mouth[3].mMy = (width / 10) * 7 - width / 2;
-  mark_mouth[4].mMx = (width / 10) * 8 - width / 2;
-  mark_mouth[4].mMy = (width / 10) * 8 - width / 2;
-  mark_mouth[5].mMx = (width / 10) * 5 - width / 2;
-  mark_mouth[5].mMy = (width / 10) * 8 - width / 2;
-  mark_mouth[6].mMx = (width / 10) * 2 - width / 2;
-  mark_mouth[6].mMy = (width / 10) * 8 - width / 2;
-  mark_mouth[7].mMx = (width / 10) * 2 - width / 2;
-  mark_mouth[7].mMy = (width / 10) * 7 - width / 2;
-  mark_mouth[8].mMx = (width / 10) * 2 - width / 2;
-  mark_mouth[8].mMy = (width / 10) * 6 - width / 2;
+  mark_mouth[0].mMx = lineLength * 2 - windowBaseHarf;
+  mark_mouth[0].mMy = lineLength * 6 - windowBaseHarf;
+  mark_mouth[1].mMx = lineLength * 5 - windowBaseHarf;
+  mark_mouth[1].mMy = lineLength * 6 - windowBaseHarf;
+  mark_mouth[2].mMx = lineLength * 8 - windowBaseHarf;
+  mark_mouth[2].mMy = lineLength * 6 - windowBaseHarf;
+  mark_mouth[3].mMx = lineLength * 8 - windowBaseHarf;
+  mark_mouth[3].mMy = lineLength * 7 - windowBaseHarf;
+  mark_mouth[4].mMx = lineLength * 8 - windowBaseHarf;
+  mark_mouth[4].mMy = lineLength * 8 - windowBaseHarf;
+  mark_mouth[5].mMx = lineLength * 5 - windowBaseHarf;
+  mark_mouth[5].mMy = lineLength * 8 - windowBaseHarf;
+  mark_mouth[6].mMx = lineLength * 2 - windowBaseHarf;
+  mark_mouth[6].mMy = lineLength * 8 - windowBaseHarf;
+  mark_mouth[7].mMx = lineLength * 2 - windowBaseHarf;
+  mark_mouth[7].mMy = lineLength * 7 - windowBaseHarf;
+  mark_mouth[8].mMx = lineLength * 2 - windowBaseHarf;
+  mark_mouth[8].mMy = lineLength * 6 - windowBaseHarf;
 
   //パーツを囲う図形の線上の点の配列設定
   let pOLx = -width / 2;
