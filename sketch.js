@@ -398,7 +398,7 @@ function draw() {
         mouseX - width / 2,
         mouseY - height / 2
       );
-      if (d_eyeL < 10) {
+      if (d_eyeL < w/4) {
         mark_eye_L[i].mELx = mouseX - width / 2;
         mark_eye_L[i].mELy = mouseY - height / 2;
       }
@@ -414,7 +414,7 @@ function draw() {
         mouseX - width / 2,
         mouseY - height / 2
       );
-      if (d_eyeR < 10) {
+      if (d_eyeR < w/4) {
         mark_eye_R[i].mERx = mouseX - width / 2;
         mark_eye_R[i].mERy = mouseY - height / 2;
       }
@@ -430,7 +430,7 @@ function draw() {
         mouseX - width / 2,
         mouseY - height / 2
       );
-      if (d_mouth < 10) {
+      if (d_mouth < w/4) {
         mark_mouth[i].mMx = mouseX - width / 2;
         mark_mouth[i].mMy = mouseY - height / 2;
       }
