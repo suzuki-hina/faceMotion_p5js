@@ -38,7 +38,7 @@ let stopTime = 0;
 let isMove = false;
 
 function setup() {
-  createCanvas(600, 600, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   img = loadImage("img/parkFace.png");
 
   //ポイントの位置の配列設定
