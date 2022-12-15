@@ -153,38 +153,30 @@ function setup() {
   mark_mouth[8].mMy = lineLength * 6 - windowBaseHarf;
 
   //パーツを囲う図形の線上の点の配列設定
+  //初期フレームの配列設定
+  //最終フレームの配列設定
   let pOLx = -width / 2;
+  let iKx = -width / 2;
+  let lKx = -width / 2;
+
   for (let i = 0; i < cols; i++) {
     pOL[i] = [];
+    iK[i] = [];
+    lK[i] = [];
+
     let pOLy = -height / 2;
+    let iKy = -height / 2;
+    let lKy = -height / 2;
     for (let j = 0; j < rows; j++) {
       pOL[i][j] = new pointOnLine(pOLx, pOLy);
       pOLy = pOLy + w;
-    }
-    pOLx = pOLx + w;
-  }
-
-  //初期フレームの配列設定
-  let iKx = -width / 2;
-  for (let i = 0; i < cols; i++) {
-    iK[i] = [];
-    let iKy = -height / 2;
-    for (let j = 0; j < rows; j++) {
       iK[i][j] = new initialKeyFrame(iKx, iKy);
       iKy = iKy + w;
-    }
-    iKx = iKx + w;
-  }
-
-  //最終フレームの配列設定
-  let lKx = -width / 2;
-  for (let i = 0; i < cols; i++) {
-    lK[i] = [];
-    let lKy = -height / 2;
-    for (let j = 0; j < rows; j++) {
       lK[i][j] = new lastKeyFrame(lKx, lKy);
       lKy = lKy + w;
     }
+    pOLx = pOLx + w;
+    iKx = iKx + w;
     lKx = lKx + w;
   }
 }
