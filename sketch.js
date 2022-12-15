@@ -3,7 +3,7 @@ let img;
 let res = 2;
 let cols = 30 / res;
 let rows = 30 / res;
-let w = 40;
+let w = windowWidth / cols;
 
 //点の表示・非表示の変数
 let pointColorChanger = false;
@@ -74,23 +74,23 @@ function setup() {
 
   //左目を囲う図形の初期位置
   mark_eye_L[0].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[0].mELy = (height / 10) * 2 - height / 2;
+  mark_eye_L[0].mELy = (width / 10) * 2 - width / 2;
   mark_eye_L[1].mELx = (width / 10) * 7 - width / 2;
-  mark_eye_L[1].mELy = (height / 10) * 2 - height / 2;
+  mark_eye_L[1].mELy = (width / 10) * 2 - width / 2;
   mark_eye_L[2].mELx = (width / 10) * 8 - width / 2;
-  mark_eye_L[2].mELy = (height / 10) * 2 - height / 2;
+  mark_eye_L[2].mELy = (width / 10) * 2 - width / 2;
   mark_eye_L[3].mELx = (width / 10) * 8 - width / 2;
-  mark_eye_L[3].mELy = (height / 10) * 3 - height / 2;
+  mark_eye_L[3].mELy = (width / 10) * 3 - width / 2;
   mark_eye_L[4].mELx = (width / 10) * 8 - width / 2;
-  mark_eye_L[4].mELy = (height / 10) * 4 - height / 2;
+  mark_eye_L[4].mELy = (width / 10) * 4 - width / 2;
   mark_eye_L[5].mELx = (width / 10) * 7 - width / 2;
-  mark_eye_L[5].mELy = (height / 10) * 4 - height / 2;
+  mark_eye_L[5].mELy = (width / 10) * 4 - width / 2;
   mark_eye_L[6].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[6].mELy = (height / 10) * 4 - height / 2;
+  mark_eye_L[6].mELy = (width / 10) * 4 - width / 2;
   mark_eye_L[7].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[7].mELy = (height / 10) * 3 - height / 2;
+  mark_eye_L[7].mELy = (width / 10) * 3 - width / 2;
   mark_eye_L[8].mELx = (width / 10) * 6 - width / 2;
-  mark_eye_L[8].mELy = (height / 10) * 2 - height / 2;
+  mark_eye_L[8].mELy = (width / 10) * 2 - width / 2;
 
   //右目を囲う図形の配列設定
   let mERx = 0;
@@ -101,23 +101,23 @@ function setup() {
 
   //右目を囲う図形の初期位置
   mark_eye_R[0].mERx = (width / 10) * 2 - width / 2;
-  mark_eye_R[0].mERy = (height / 10) * 2 - height / 2;
+  mark_eye_R[0].mERy = (width / 10) * 2 - width / 2;
   mark_eye_R[1].mERx = (width / 10) * 3 - width / 2;
-  mark_eye_R[1].mERy = (height / 10) * 2 - height / 2;
+  mark_eye_R[1].mERy = (width / 10) * 2 - width / 2;
   mark_eye_R[2].mERx = (width / 10) * 4 - width / 2;
-  mark_eye_R[2].mERy = (height / 10) * 2 - height / 2;
+  mark_eye_R[2].mERy = (width / 10) * 2 - width / 2;
   mark_eye_R[3].mERx = (width / 10) * 4 - width / 2;
-  mark_eye_R[3].mERy = (height / 10) * 3 - height / 2;
+  mark_eye_R[3].mERy = (width / 10) * 3 - width / 2;
   mark_eye_R[4].mERx = (width / 10) * 4 - width / 2;
-  mark_eye_R[4].mERy = (height / 10) * 4 - height / 2;
+  mark_eye_R[4].mERy = (width / 10) * 4 - width / 2;
   mark_eye_R[5].mERx = (width / 10) * 3 - width / 2;
-  mark_eye_R[5].mERy = (width / 10) * 4 - height / 2;
-  mark_eye_R[6].mERx = (height / 10) * 2 - width / 2;
-  mark_eye_R[6].mERy = (width / 10) * 4 - height / 2;
-  mark_eye_R[7].mERx = (height / 10) * 2 - width / 2;
-  mark_eye_R[7].mERy = (width / 10) * 3 - height / 2;
-  mark_eye_R[8].mERx = (height / 10) * 2 - width / 2;
-  mark_eye_R[8].mERy = (width / 10) * 2 - height / 2;
+  mark_eye_R[5].mERy = (width / 10) * 4 - width / 2;
+  mark_eye_R[6].mERx = (width / 10) * 2 - width / 2;
+  mark_eye_R[6].mERy = (width / 10) * 4 - width / 2;
+  mark_eye_R[7].mERx = (width / 10) * 2 - width / 2;
+  mark_eye_R[7].mERy = (width / 10) * 3 - width / 2;
+  mark_eye_R[8].mERx = (width / 10) * 2 - width / 2;
+  mark_eye_R[8].mERy = (width / 10) * 2 - width / 2;
 
   //口を囲う図形の配列設定
   let mMx = 0;
@@ -128,23 +128,23 @@ function setup() {
 
   //口を囲う図形の初期位置
   mark_mouth[0].mMx = (width / 10) * 2 - width / 2;
-  mark_mouth[0].mMy = (height / 10) * 6 - height / 2;
+  mark_mouth[0].mMy = (width / 10) * 6 - width / 2;
   mark_mouth[1].mMx = (width / 10) * 5 - width / 2;
-  mark_mouth[1].mMy = (height / 10) * 6 - height / 2;
+  mark_mouth[1].mMy = (width / 10) * 6 - width / 2;
   mark_mouth[2].mMx = (width / 10) * 8 - width / 2;
-  mark_mouth[2].mMy = (height / 10) * 6 - height / 2;
+  mark_mouth[2].mMy = (width / 10) * 6 - width / 2;
   mark_mouth[3].mMx = (width / 10) * 8 - width / 2;
-  mark_mouth[3].mMy = (height / 10) * 7 - height / 2;
+  mark_mouth[3].mMy = (width / 10) * 7 - width / 2;
   mark_mouth[4].mMx = (width / 10) * 8 - width / 2;
-  mark_mouth[4].mMy = (height / 10) * 8 - height / 2;
+  mark_mouth[4].mMy = (width / 10) * 8 - width / 2;
   mark_mouth[5].mMx = (width / 10) * 5 - width / 2;
-  mark_mouth[5].mMy = (width / 10) * 8 - height / 2;
-  mark_mouth[6].mMx = (height / 10) * 2 - width / 2;
-  mark_mouth[6].mMy = (width / 10) * 8 - height / 2;
-  mark_mouth[7].mMx = (height / 10) * 2 - width / 2;
-  mark_mouth[7].mMy = (width / 10) * 7 - height / 2;
-  mark_mouth[8].mMx = (height / 10) * 2 - width / 2;
-  mark_mouth[8].mMy = (width / 10) * 6 - height / 2;
+  mark_mouth[5].mMy = (width / 10) * 8 - width / 2;
+  mark_mouth[6].mMx = (width / 10) * 2 - width / 2;
+  mark_mouth[6].mMy = (width / 10) * 8 - width / 2;
+  mark_mouth[7].mMx = (width / 10) * 2 - width / 2;
+  mark_mouth[7].mMy = (width / 10) * 7 - width / 2;
+  mark_mouth[8].mMx = (width / 10) * 2 - width / 2;
+  mark_mouth[8].mMy = (width / 10) * 6 - width / 2;
 
   //パーツを囲う図形の線上の点の配列設定
   let pOLx = -width / 2;
