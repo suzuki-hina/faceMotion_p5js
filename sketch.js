@@ -38,6 +38,10 @@ let stopTime = 0;
 let isMove = false;
 
 function setup() {
+  //ウィンドウのスワイプを止める
+  window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
+  window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });
+
   createCanvas(windowWidth, windowHeight, WEBGL);
   img = loadImage("img/parkFace.png");
 
