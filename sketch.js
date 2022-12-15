@@ -92,10 +92,6 @@ function setup() {
     mark_mouth[i] = new markMouth(mMx, mMy);
   }
 
-  for (let i = 0; i < 8; i++) {
-    
-  }
-
   //左目を囲う図形の初期位置
   mark_eye_L[0].mELx = lineLength * 6 - windowBaseHarf;
   mark_eye_L[0].mELy = lineLength * 2 - windowBaseHarf;
