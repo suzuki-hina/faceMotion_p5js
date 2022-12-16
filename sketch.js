@@ -81,28 +81,28 @@ function setup() {
   let mx = 0;
   let my = 0;
   for (let i = 0; i < markNum; i++) {
-    mark[i] = new mark(mx, my);
+    mark[i] = new Mark(mx, my);
   }
 
-    //右目を囲う図形の初期位置
-    mark[0].mx = lineLength * 2 - windowBaseHarf;
-    mark[0].my = lineLength * 2 - windowBaseHarf;
-    mark[1].mx = lineLength * 3 - windowBaseHarf;
-    mark[1].my = lineLength * 2 - windowBaseHarf;
-    mark[2].mx = lineLength * 4 - windowBaseHarf;
-    mark[2].my = lineLength * 2 - windowBaseHarf;
-    mark[3].mx = lineLength * 4 - windowBaseHarf;
-    mark[3].my = lineLength * 3 - windowBaseHarf;
-    mark[4].mx = lineLength * 4 - windowBaseHarf;
-    mark[4].my = lineLength * 4 - windowBaseHarf;
-    mark[5].mx = lineLength * 3 - windowBaseHarf;
-    mark[5].my = lineLength * 4 - windowBaseHarf;
-    mark[6].mx = lineLength * 2 - windowBaseHarf;
-    mark[6].my = lineLength * 4 - windowBaseHarf;
-    mark[7].mx = lineLength * 2 - windowBaseHarf;
-    mark[7].my = lineLength * 3 - windowBaseHarf;
-    mark[8].mx = lineLength * 2 - windowBaseHarf;
-    mark[8].my = lineLength * 2 - windowBaseHarf;
+  //右目を囲う図形の初期位置
+  mark[0].mx = lineLength * 2 - windowBaseHarf;
+  mark[0].my = lineLength * 2 - windowBaseHarf;
+  mark[1].mx = lineLength * 3 - windowBaseHarf;
+  mark[1].my = lineLength * 2 - windowBaseHarf;
+  mark[2].mx = lineLength * 4 - windowBaseHarf;
+  mark[2].my = lineLength * 2 - windowBaseHarf;
+  mark[3].mx = lineLength * 4 - windowBaseHarf;
+  mark[3].my = lineLength * 3 - windowBaseHarf;
+  mark[4].mx = lineLength * 4 - windowBaseHarf;
+  mark[4].my = lineLength * 4 - windowBaseHarf;
+  mark[5].mx = lineLength * 3 - windowBaseHarf;
+  mark[5].my = lineLength * 4 - windowBaseHarf;
+  mark[6].mx = lineLength * 2 - windowBaseHarf;
+  mark[6].my = lineLength * 4 - windowBaseHarf;
+  mark[7].mx = lineLength * 2 - windowBaseHarf;
+  mark[7].my = lineLength * 3 - windowBaseHarf;
+  mark[8].mx = lineLength * 2 - windowBaseHarf;
+  mark[8].my = lineLength * 2 - windowBaseHarf;
 
   //左目を囲う図形の初期位置
   mark[9].mx = lineLength * 6 - windowBaseHarf;
@@ -355,7 +355,7 @@ function draw() {
         strokeWeight(10);
         point(pP[i][j].x, pP[i][j].y);
 
-        stroke(0, 255, 0);
+        stroke(255, 0, 255);
         strokeWeight(5);
         point(pT[i][j].x, pT[i][j].y);
       }
@@ -365,9 +365,9 @@ function draw() {
   //囲う図形のマウス移動
   for (let i = 0; i < markNum; i++) {
     if (mouseIsPressed == true) {
-      let dist = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
+      let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
 
-      if (dist < w/4) {
+      if (dis < w/4) {
         mark[i].mx = mouseX - width / 2;
         mark[i].my = mouseY - height / 2;
       }
@@ -416,32 +416,32 @@ function draw() {
       point(mark[k].mx, mark[k].my);
     }
     strokeWeight(5);
-    line(mark[markNum / 3 * 2 - 1].mx, mark[markNum / 3 * 2 - 1].my, mark[markNum / 3 * 2].mx, mark[markNum / 3 * 2].my);
+    line(mark[markNum - 1].mx, mark[markNum - 1].my, mark[markNum / 3 * 2].mx, mark[markNum / 3 * 2].my);
   }
 
   //点と直線の距離
   for (let k = 0; k < markNum - 1; k++) {
     for (let j = 0; j < rows - 1; j++) {
       for (let i = 0; i < cols; i++) {
-        let a = mark_eye_L[k].mELy - mark_eye_L[k + 1].mELy;
-        let b = -(mark_eye_L[k].mELx - mark_eye_L[k + 1].mELx);
-        let c = (mark_eye_L[k].mELy - mark_eye_L[k + 1].mELy) * -mark_eye_L[k].mELx + mark_eye_L[k].mELy * (mark_eye_L[k].mELx - mark_eye_L[k + 1].mELx);
+        let a = mark[k].my - mark[k + 1].my;
+        let b = -(mark[k].mx - mark[k + 1].mx);
+        let c = (mark[k].my - mark[k + 1].my) * -mark[k].mx + mark[k].my * (mark[k].mx - mark[k + 1].mx);
         let d = abs(a * pT[i][j].x + b * pT[i][j].y + c) / sqrt(sq(a) + sq(b));
 
-        if ((mark_eye_L[k].mELx - w / 2 < pT[i][j].x && pT[i][j].x < mark_eye_L[k + 1].mELx + w / 2) || (mark_eye_L[k + 1].mELx - w / 2 < pT[i][j].x && pT[i][j].x < mark_eye_L[k].mELx + w / 2)) {
-          if ((mark_eye_L[k].mELy - w / 2 < pT[i][j].y && pT[i][j].y < mark_eye_L[k + 1].mELy + w / 2) || (mark_eye_L[k + 1].mELy - w / 2 < pT[i][j].y && pT[i][j].y < mark_eye_L[k].mELy + w / 2)) {
+        if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
+          if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
             if (d < w / 2) {
-              if(0 <= k && k < markNum/3){
+              if(0 <= k && k < markNum/3 - 1){
                 fill(255, 0, 0);
                 noStroke();
                 ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
               }
-              else if(markNum/3 <= k && k < markNum/3 * 2){
+              else if(markNum/3 <= k && k < markNum/3 * 2 - 1){
                 fill(0, 255, 0);
                 noStroke();
                 ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
               } 
-              else{
+              else if(markNum/3 * 2 <= k && k < markNum - 1){
                 fill(0, 0, 255);
                 noStroke();
                 ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
@@ -451,28 +451,28 @@ function draw() {
         }
 
         if (pointPosSet == 1) {
-          if ((mark_eye_L[k].mELx - w / 2 < pT[i][j].x && pT[i][j].x < mark_eye_L[k + 1].mELx + w / 2) || (mark_eye_L[k + 1].mELx - w / 2 < pT[i][j].x && pT[i][j].x < mark_eye_L[k].mELx + w / 2)) {
-            if ((mark_eye_L[k].mELy - w / 2 < pT[i][j].y && pT[i][j].y < mark_eye_L[k + 1].mELy + w / 2) || (mark_eye_L[k + 1].mELy - w / 2 < pT[i][j].y && pT[i][j].y < mark_eye_L[k].mELy + w / 2)) {
+          if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
+            if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
               if (d < w / 2) {
                 // 線分が垂直の場合
-                if (mark_eye_L[k].mELx == mark_eye_L[k + 1].mELx) {
-                  pOL[i][j].pOLx = mark_eye_L[k].mELx;
+                if (mark[k].mx == mark[k + 1].mx) {
+                  pOL[i][j].pOLx = mark[k].mx;
                   pOL[i][j].pOLy = pT[i][j].y;
                 }
 
                 // 線分が水平の場合
-                else if (mark_eye_L[k].mELy == mark_eye_L[k + 1].mELy) {
+                else if (mark[k].my == mark[k + 1].my) {
                   pOL[i][j].pOLx = pT[i][j].x;
-                  pOL[i][j].pOLy = mark_eye_L[k].mELy;
+                  pOL[i][j].pOLy = mark[k].my;
                 }
                 
                 //それ以外
                 else {
                   let m1, m2, l1, l2;
                   //線分の傾き
-                  m1 = (mark_eye_L[k + 1].mELy - mark_eye_L[k].mELy) / (mark_eye_L[k + 1].mELx - mark_eye_L[k].mELx);
+                  m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mELx - mark[k].mx);
                   //線分のY切片
-                  l1 = mark_eye_L[k].mELy - (m1 * mark_eye_L[k].mELx);
+                  l1 = mark[k].my - (m1 * mark[k].mx);
 
                   //垂線の傾き
                   m2 = -1 / m1;
@@ -514,31 +514,10 @@ class pointTexture {
   }
 }
 
-class mark {
+class Mark {
   constructor(x, y) {
     this.x = y;
     this.x = y;
-  }
-}
-
-class markEyeLeft {
-  constructor(x, y) {
-    this.x = y;
-    this.x = y;
-  }
-}
-
-class markEyeRight {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
-
-class markMouth {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
   }
 }
 
