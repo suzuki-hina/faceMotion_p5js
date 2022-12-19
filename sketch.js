@@ -484,6 +484,12 @@ function draw() {
                     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
+
+                  pT[i][j].x = pOL[i][j].pOLx;
+                  pT[i][j].y = pOL[i][j].pOLy;
+
+                  pP[i][j].x = pOL[i][j].pOLx;
+                  pP[i][j].y = pOL[i][j].pOLy;
                 }
                 
                 else if(markNum/3 <= k && k < markNum/3 * 2 - 1){
@@ -516,6 +522,12 @@ function draw() {
                     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
+
+                  pT[i][j].x = pOL[i][j].pOLx;
+                  pT[i][j].y = pOL[i][j].pOLy;
+
+                  pP[i][j].x = pOL[i][j].pOLx;
+                  pP[i][j].y = pOL[i][j].pOLy;
                 }
 
                 else if(markNum/3 * 2 <= k && k < markNum - 1){
@@ -548,17 +560,17 @@ function draw() {
                     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
+
+                  pT[i][j].x = pOL[i][j].pOLx;
+                  pT[i][j].y = pOL[i][j].pOLy;
+
+                  pP[i][j].x = pOL[i][j].pOLx;
+                  pP[i][j].y = pOL[i][j].pOLy;
                 }
                 else{
                   pOL[i][j].pOLx = pT[i][j].x;
                   pOL[i][j].pOLy = pT[i][j].y;
                 }
-
-                pT[i][j].x = pOL[i][j].pOLx;
-                pT[i][j].y = pOL[i][j].pOLy;
-
-                pP[i][j].x = pOL[i][j].pOLx;
-                pP[i][j].y = pOL[i][j].pOLy;
               }
             }
           }
