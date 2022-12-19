@@ -16,11 +16,14 @@ let pT = [];
 //パーツを囲う線の頂点の数
 let markNum = 27;
 let mark = [];
-let markColorChanger = true;
+let lineMouseMove = true;
+let lineColorChanger = true;
 
 //囲う線上にある点
 let pointPosSet = false;
 let pOL = [];
+let markMouseMove = false;
+let markColorChanger = true;
 
 //アニメーションのフレームの前後
 let iK = [];
@@ -206,71 +209,71 @@ function draw() {
   noStroke();
 
   // if (keyIsPressed) {
-    // // 移動のリセット
-    // if (key == "r") {
-    //   let pPx = -width / 2;
-    //   let pTx = -width / 2;
-    //   for (let i = 0; i < cols; i++) {
-    //     pP[i] = [];
-    //     pT[i] = [];
+  // // 移動のリセット
+  // if (key == "r") {
+  //   let pPx = -width / 2;
+  //   let pTx = -width / 2;
+  //   for (let i = 0; i < cols; i++) {
+  //     pP[i] = [];
+  //     pT[i] = [];
 
-    //     let pPy = -height / 2;
-    //     let pTy = -height / 2;
-    //     for (let j = 0; j < rows; j++) {
-    //       pP[i][j] = new pointPosition(pPx, pPy);
-    //       pT[i][j] = new pointTexture(pTx, pTy);
-    //       pPy = pPy + w;
-    //       pTy = pTy + w;
-    //     }
-    //     pPx = pPx + w;
-    //     pTx = pTx + w;
-    //   }
-    // }
+  //     let pPy = -height / 2;
+  //     let pTy = -height / 2;
+  //     for (let j = 0; j < rows; j++) {
+  //       pP[i][j] = new pointPosition(pPx, pPy);
+  //       pT[i][j] = new pointTexture(pTx, pTy);
+  //       pPy = pPy + w;
+  //       pTy = pTy + w;
+  //     }
+  //     pPx = pPx + w;
+  //     pTx = pTx + w;
+  //   }
+  // }
 
-    // //囲う図形の線上に点が移動する
-    // if (key == "c") {
-    //   pointPosSet = true;
-    // }
-    // else if (key == "v") {
-    //   pointPosSet = false;
-    // }
+  // //囲う図形の線上に点が移動する
+  // if (key == "c") {
+  //   pointPosSet = true;
+  // }
+  // else if (key == "v") {
+  //   pointPosSet = false;
+  // }
 
-    // //移動前の位置のキーフレームを打つ
-    // if (key == "i") {
-    //   for (let i = 0; i < cols; i++) {
-    //     for (let j = 0; j < rows; j++) {
-    //       iK[i][j].x = pP[i][j].x;
-    //       iK[i][j].y = pP[i][j].y;
-    //     }
-    //   }
-    // }
+  // //移動前の位置のキーフレームを打つ
+  // if (key == "i") {
+  //   for (let i = 0; i < cols; i++) {
+  //     for (let j = 0; j < rows; j++) {
+  //       iK[i][j].x = pP[i][j].x;
+  //       iK[i][j].y = pP[i][j].y;
+  //     }
+  //   }
+  // }
 
-    // //移動後の位置のキーフレームを打つ
-    // if (key == "l") {
-    //   for (let i = 0; i < cols; i++) {
-    //     for (let j = 0; j < rows; j++) {
-    //       lK[i][j].x = pP[i][j].x;
-    //       lK[i][j].y = pP[i][j].y;
-    //     }
-    //   }
-    // }
+  // //移動後の位置のキーフレームを打つ
+  // if (key == "l") {
+  //   for (let i = 0; i < cols; i++) {
+  //     for (let j = 0; j < rows; j++) {
+  //       lK[i][j].x = pP[i][j].x;
+  //       lK[i][j].y = pP[i][j].y;
+  //     }
+  //   }
+  // }
 
-    // //移動前の位置にポイントを移動させる
-    // if (key == "o") {
-    //   isMove = false;
-    //   for (let i = 0; i < cols; i++) {
-    //     for (let j = 0; j < rows; j++) {
-    //       pP[i][j].x = iK[i][j].x;
-    //       pP[i][j].y = iK[i][j].y;
-    //     }
-    //   }
-    // }
+  // //移動前の位置にポイントを移動させる
+  // if (key == "o") {
+  //   isMove = false;
+  //   for (let i = 0; i < cols; i++) {
+  //     for (let j = 0; j < rows; j++) {
+  //       pP[i][j].x = iK[i][j].x;
+  //       pP[i][j].y = iK[i][j].y;
+  //     }
+  //   }
+  // }
 
-    // //アニメーションさせる
-    // if (key == "k") {
-    //   isMove = true;
-    //   stopTime = 0;
-    // }
+  // //アニメーションさせる
+  // if (key == "k") {
+  //   isMove = true;
+  //   stopTime = 0;
+  // }
   // }
 
   //アニメーションの設定
@@ -302,21 +305,20 @@ function draw() {
   }
 
   //マウスによる移動
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      if (mouseIsPressed == true) {
-        if (keyIsPressed) {
-          if (key == "a") {
-            let d = dist(pP[i][j].x, pP[i][j].y, mouseX - width / 2, mouseY - height / 2);
-            if (d < 10) {
-              pP[i][j].x = mouseX - width / 2;
-              pP[i][j].y = mouseY - height / 2;
-            }
+  if (markMouseMove = true) {
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        if (mouseIsPressed == true) {
+          let d = dist(pP[i][j].x, pP[i][j].y, mouseX - width / 2, mouseY - height / 2);
+          if (d < 10) {
+            pP[i][j].x = mouseX - width / 2;
+            pP[i][j].y = mouseY - height / 2;
           }
         }
       }
     }
   }
+
 
   //テクスチャ平面の描画
   noFill();
@@ -341,16 +343,16 @@ function draw() {
     endShape();
   }
 
-  //テクスチャ平面の点の表示・非表示
-  if (keyIsPressed) {
-    //線の表示・非表示
-    if (key == "w") {
-      pointColorChanger = false;
-    }
-    if (key == "e") {
-      pointColorChanger = true;
-    }
-  }
+  // //テクスチャ平面の点の表示・非表示
+  // if (keyIsPressed) {
+  //   //線の表示・非表示
+  //   if (key == "w") {
+  //     pointColorChanger = false;
+  //   }
+  //   if (key == "e") {
+  //     pointColorChanger = true;
+  //   }
+  // }
 
   //ポイントの色
   if (pointColorChanger == true) {
@@ -368,28 +370,30 @@ function draw() {
   }
 
   //囲う図形のマウス移動
-  for (let i = 0; i < markNum; i++) {
-    if (mouseIsPressed == true) {
-      let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
+  if (lineMouseMove == true) {
+    for (let i = 0; i < markNum; i++) {
+      if (mouseIsPressed == true) {
+        let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
 
-      if (dis < w / 4) {
-        mark[i].mx = mouseX - width / 2;
-        mark[i].my = mouseY - height / 2;
+        if (dis < w / 4) {
+          mark[i].mx = mouseX - width / 2;
+          mark[i].my = mouseY - height / 2;
+        }
       }
     }
   }
 
-  if (keyIsPressed) {
-    //線の表示・非表示
-    if (key == "z") {
-      markColorChanger = false;
-    }
-    if (key == "x") {
-      markColorChanger = true;
-    }
-  }
+  // if (keyIsPressed) {
+  //   //線の表示・非表示
+  //   if (key == "z") {
+  //     lineColorChanger = false;
+  //   }
+  //   if (key == "x") {
+  //     lineColorChanger = true;
+  //   }
+  // }
 
-  if (markColorChanger == true) {
+  if (lineColorChanger == true) {
     stroke(255);
     fill(255);
 
@@ -433,23 +437,25 @@ function draw() {
         let c = (mark[k].my - mark[k + 1].my) * -mark[k].mx + mark[k].my * (mark[k].mx - mark[k + 1].mx);
         let d = abs(a * pT[i][j].x + b * pT[i][j].y + c) / sqrt(sq(a) + sq(b));
 
-        if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
-          if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
-            if (d < w / 2) {
-              if (0 <= k && k < markNum / 3 - 1) {
-                fill(255, 0, 0);
-                noStroke();
-                ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-              }
-              else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
-                fill(0, 255, 0);
-                noStroke();
-                ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-              }
-              else if (markNum / 3 * 2 <= k && k < markNum - 1) {
-                fill(0, 0, 255);
-                noStroke();
-                ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+        if (markColorChanger == true) {
+          if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
+            if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
+              if (d < w / 2) {
+                if (0 <= k && k < markNum / 3 - 1) {
+                  fill(255, 0, 0);
+                  noStroke();
+                  ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+                }
+                else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
+                  fill(0, 255, 0);
+                  noStroke();
+                  ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+                }
+                else if (markNum / 3 * 2 <= k && k < markNum - 1) {
+                  fill(0, 0, 255);
+                  noStroke();
+                  ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+                }
               }
             }
           }
@@ -575,6 +581,11 @@ function draw() {
 
 function TextureButton() {
   pointPosSet = true;
+  pointColorChanger = true;
+  lineMouseMove = true;
+  lineColorChanger = true;
+  markColorChanger = true;
+  markMouseMove = false;
 }
 
 function ResetButton() {
@@ -597,6 +608,12 @@ function ResetButton() {
     pPx = pPx + w;
     pTx = pTx + w;
   }
+
+  pointColorChanger = true;
+  lineMouseMove = true;
+  lineColorChanger = true;
+  markColorChanger = true;
+  markMouseMove = false;
 }
 
 function TDecisionButton() {
@@ -608,6 +625,12 @@ function TDecisionButton() {
       iK[i][j].y = pP[i][j].y;
     }
   }
+
+  pointColorChanger = true;
+  lineMouseMove = false;
+  lineColorChanger = false;
+  markColorChanger = true;
+  markMouseMove = true;
 }
 
 function DeformButton() {
@@ -617,6 +640,10 @@ function DeformButton() {
       lK[i][j].y = pP[i][j].y;
     }
   }
+
+  pointColorChanger = true;
+  markColorChanger = true;
+  markMouseMove = true;
 }
 
 function DDecisionButton() {
@@ -627,9 +654,15 @@ function DDecisionButton() {
       pP[i][j].y = iK[i][j].y;
     }
   }
+
+  pointColorChanger = true;
+  markColorChanger = true;
+  markMouseMove = true;
 }
 
 function AnimationButton() {
+  pointColorChanger = false;
+  markColorChanger = false;
   isMove = true;
   stopTime = 0;
 }
