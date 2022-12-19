@@ -48,10 +48,10 @@ function setup() {
 
   if(windowWidth <= windowHeight){
     windowBase = windowWidth;
-    w = windowWidth / cols;
+    w = winÏdowWidth / cols;
     lineLength = windowBase / 10;
     windowBaseHarf = windowWidth / 2;
-  }else if(windowWidth > windowHeight){
+  }else{
     windowBase = windowHeight;
     w = windowHeight / rows;
     lineLength = windowBase / 10;
@@ -471,7 +471,7 @@ function draw() {
                   else {
                     let m1, m2, l1, l2;
                     //線分の傾き
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mELx - mark[k].mx);
+                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
                     //線分のY切片
                     l1 = mark[k].my - (m1 * mark[k].mx);
 
@@ -484,12 +484,6 @@ function draw() {
                     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
-
-                  pT[i][j].x = pOL[i][j].pOLx;
-                  pT[i][j].y = pOL[i][j].pOLy;
-
-                  pP[i][j].x = pOL[i][j].pOLx;
-                  pP[i][j].y = pOL[i][j].pOLy;
                 }
                 
                 else if(markNum/3 <= k && k < markNum/3 * 2 - 1){
@@ -509,7 +503,7 @@ function draw() {
                   else {
                     let m1, m2, l1, l2;
                     //線分の傾き
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mELx - mark[k].mx);
+                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
                     //線分のY切片
                     l1 = mark[k].my - (m1 * mark[k].mx);
 
@@ -522,12 +516,6 @@ function draw() {
                     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
-
-                  pT[i][j].x = pOL[i][j].pOLx;
-                  pT[i][j].y = pOL[i][j].pOLy;
-
-                  pP[i][j].x = pOL[i][j].pOLx;
-                  pP[i][j].y = pOL[i][j].pOLy;
                 }
 
                 else if(markNum/3 * 2 <= k && k < markNum - 1){
@@ -547,7 +535,7 @@ function draw() {
                   else {
                     let m1, m2, l1, l2;
                     //線分の傾き
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mELx - mark[k].mx);
+                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
                     //線分のY切片
                     l1 = mark[k].my - (m1 * mark[k].mx);
 
@@ -560,17 +548,17 @@ function draw() {
                     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
-
-                  pT[i][j].x = pOL[i][j].pOLx;
-                  pT[i][j].y = pOL[i][j].pOLy;
-
-                  pP[i][j].x = pOL[i][j].pOLx;
-                  pP[i][j].y = pOL[i][j].pOLy;
                 }
                 else{
                   pOL[i][j].pOLx = pT[i][j].x;
                   pOL[i][j].pOLy = pT[i][j].y;
                 }
+
+                pT[i][j].x = pOL[i][j].pOLx;
+                pT[i][j].y = pOL[i][j].pOLy;
+
+                pP[i][j].x = pOL[i][j].pOLx;
+                pP[i][j].y = pOL[i][j].pOLy;
               }
             }
           }
