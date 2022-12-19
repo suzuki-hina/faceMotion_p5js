@@ -39,7 +39,9 @@ let isMove = false;
 //ボタンつくる
 let textureButton;
 let resetButton;
+let TdecisionButton;
 let deformButton;
+let DdecisionButton;
 let animationButton;
 
 
@@ -51,10 +53,10 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   img = loadImage("img/parkFace.png");
 
-  if(windowWidth <= windowHeight){
+  if (windowWidth <= windowHeight) {
     windowBase = windowWidth;
     w = windowWidth / cols;
-  }else if(windowWidth > windowHeight){
+  } else if (windowWidth > windowHeight) {
     windowBase = windowHeight;
     w = windowHeight / rows;
   }
@@ -86,64 +88,64 @@ function setup() {
   }
 
   //右目を囲う図形の初期位置
-  mark[0].mx = w * 2 - width/2;
-  mark[0].my = w * 2 - height/2;
-  mark[1].mx = w * 3 - width/2;
-  mark[1].my = w * 2 - height/2;
-  mark[2].mx = w * 4 - width/2;
-  mark[2].my = w * 2 - height/2;
-  mark[3].mx = w * 4 - width/2;
-  mark[3].my = w * 3 - height/2;
-  mark[4].mx = w * 4 - width/2;
-  mark[4].my = w * 4 - height/2;
-  mark[5].mx = w * 3 - width/2;
-  mark[5].my = w * 4 - height/2;
-  mark[6].mx = w * 2 - width/2;
-  mark[6].my = w * 4 - height/2;
-  mark[7].mx = w * 2 - width/2;
-  mark[7].my = w * 3 - height/2;
-  mark[8].mx = w * 2 - width/2;
-  mark[8].my = w * 2 - height/2;
+  mark[0].mx = w * 2 - width / 2;
+  mark[0].my = w * 2 - height / 2;
+  mark[1].mx = w * 3 - width / 2;
+  mark[1].my = w * 2 - height / 2;
+  mark[2].mx = w * 4 - width / 2;
+  mark[2].my = w * 2 - height / 2;
+  mark[3].mx = w * 4 - width / 2;
+  mark[3].my = w * 3 - height / 2;
+  mark[4].mx = w * 4 - width / 2;
+  mark[4].my = w * 4 - height / 2;
+  mark[5].mx = w * 3 - width / 2;
+  mark[5].my = w * 4 - height / 2;
+  mark[6].mx = w * 2 - width / 2;
+  mark[6].my = w * 4 - height / 2;
+  mark[7].mx = w * 2 - width / 2;
+  mark[7].my = w * 3 - height / 2;
+  mark[8].mx = w * 2 - width / 2;
+  mark[8].my = w * 2 - height / 2;
 
   //左目を囲う図形の初期位置
-  mark[9].mx = w * 6 - width/2;
-  mark[9].my = w * 2 - height/2;
-  mark[10].mx = w * 7 - width/2;
-  mark[10].my = w * 2 - height/2;
-  mark[11].mx = w * 8 - width/2;
-  mark[11].my = w * 2 - height/2;
-  mark[12].mx = w * 8 - width/2;
-  mark[12].my = w * 3 - height/2;
-  mark[13].mx = w * 8 - width/2;
-  mark[13].my = w * 4 - height/2;
-  mark[14].mx = w * 7 - width/2;
-  mark[14].my = w * 4 - height/2;
-  mark[15].mx = w * 6 - width/2;
-  mark[15].my = w * 4 - height/2;
-  mark[16].mx = w * 6 - width/2;
-  mark[16].my = w * 3 - height/2;
-  mark[17].mx = w * 6 - width/2;
-  mark[17].my = w * 2 - height/2;
+  mark[9].mx = w * 6 - width / 2;
+  mark[9].my = w * 2 - height / 2;
+  mark[10].mx = w * 7 - width / 2;
+  mark[10].my = w * 2 - height / 2;
+  mark[11].mx = w * 8 - width / 2;
+  mark[11].my = w * 2 - height / 2;
+  mark[12].mx = w * 8 - width / 2;
+  mark[12].my = w * 3 - height / 2;
+  mark[13].mx = w * 8 - width / 2;
+  mark[13].my = w * 4 - height / 2;
+  mark[14].mx = w * 7 - width / 2;
+  mark[14].my = w * 4 - height / 2;
+  mark[15].mx = w * 6 - width / 2;
+  mark[15].my = w * 4 - height / 2;
+  mark[16].mx = w * 6 - width / 2;
+  mark[16].my = w * 3 - height / 2;
+  mark[17].mx = w * 6 - width / 2;
+  mark[17].my = w * 2 - height / 2;
 
   //口を囲う図形の初期位置
-  mark[18].mx = w * 2 - width/2;
-  mark[18].my = w * 6 - height/2;
-  mark[19].mx = w * 5 - width/2;
-  mark[19].my = w * 6 - height/2;
-  mark[20].mx = w * 8 - width/2;
-  mark[20].my = w * 6 - height/2;
-  mark[21].mx = w * 8 - width/2;
-  mark[21].my = w * 7 - height/2;
-  mark[22].mx = w * 8 - width/2;
-  mark[22].my = w * 8 - height/2;
-  mark[23].mx = w * 5 - width/2;
-  mark[23].my = w * 8 - height/2;
-  mark[24].mx = w * 2 - width/2;
-  mark[24].my = w * 8 - height/2;
-  mark[25].mx = w * 2 - width/2;
-  mark[25].my = w * 7 - height/2;
-  mark[26].mx = w * 2 - width/2;
-  mark[26].my = w * 6 - height/2;
+  mark[18].mx = w * 2 - width / 2;
+  mark[18].my = w * 6 - height / 2;
+  mark[19].mx = w * 5 - width / 2;
+  mark[19].my = w * 6 - height / 2;
+  mark[20].mx = w * 8 - width / 2;
+  mark[20].my = w * 6 - height / 2;
+  mark[21].mx = w * 8 - width / 2;
+  mark[21].my = w * 7 - height / 2;
+  mark[22].mx = w * 8 - width / 2;
+  mark[22].my = w * 8 - height / 2;
+  mark[23].mx = w * 5 - width / 2;
+  mark[23].my = w * 8 - height / 2;
+  mark[24].mx = w * 2 - width / 2;
+  mark[24].my = w * 8 - height / 2;
+  mark[25].mx = w * 2 - width / 2;
+  mark[25].my = w * 7 - height / 2;
+  mark[26].mx = w * 2 - width / 2;
+  mark[26].my = w * 6 - height / 2;
 
   //パーツを囲う図形の線上の点の配列設定
   //初期フレームの配列設定
@@ -176,92 +178,100 @@ function setup() {
   //ボタンの作成
   textureButton = createButton("texture");
   textureButton.position(w, w * 9);
-  textureButton.mousePressed(randomRectangle);
+  textureButton.mousePressed(TextureButton);
 
   resetButton = createButton("reset");
   resetButton.position(w * 2, w * 9);
-  resetButton.mousePressed(randomRectangle);
+  resetButton.mousePressed(ResetButton);
+
+  TdecisionButton = createButton("Tdecision");
+  TdecisionButton.position(w * 3, w * 9);
+  TdecisionButton.mousePressed(TDecisionButton);
 
   deformButton = createButton("deform");
-  deformButton.position(w * 3, w * 9);
-  deformButton.mousePressed(randomRectangle);
+  deformButton.position(w * 4, w * 9);
+  deformButton.mousePressed(DeformButton);
+
+  DdecisionButton = createButton("Ddecision");
+  DdecisionButton.position(w * 5, w * 9);
+  DdecisionButton.mousePressed(DDecisionButton);
 
   animationButton = createButton("animation");
-  animationButton.position(w * 4, w * 9);
-  animationButton.mousePressed(randomRectangle);
+  animationButton.position(w * 6, w * 9);
+  animationButton.mousePressed(AnimationButton);
 }
 
 function draw() {
   background(0);
   noStroke();
 
-  if (keyIsPressed) {
-    //移動のリセット
-    if (key == "r") {
-      let pPx = -width / 2;
-      let pTx = -width / 2;
-      for (let i = 0; i < cols; i++) {
-        pP[i] = [];
-        pT[i] = [];
+  // if (keyIsPressed) {
+    // // 移動のリセット
+    // if (key == "r") {
+    //   let pPx = -width / 2;
+    //   let pTx = -width / 2;
+    //   for (let i = 0; i < cols; i++) {
+    //     pP[i] = [];
+    //     pT[i] = [];
 
-        let pPy = -height / 2;
-        let pTy = -height / 2;
-        for (let j = 0; j < rows; j++) {
-          pP[i][j] = new pointPosition(pPx, pPy);
-          pT[i][j] = new pointTexture(pTx, pTy);
-          pPy = pPy + w;
-          pTy = pTy + w;
-        }
-        pPx = pPx + w;
-        pTx = pTx + w;
-      }
-    }
+    //     let pPy = -height / 2;
+    //     let pTy = -height / 2;
+    //     for (let j = 0; j < rows; j++) {
+    //       pP[i][j] = new pointPosition(pPx, pPy);
+    //       pT[i][j] = new pointTexture(pTx, pTy);
+    //       pPy = pPy + w;
+    //       pTy = pTy + w;
+    //     }
+    //     pPx = pPx + w;
+    //     pTx = pTx + w;
+    //   }
+    // }
 
-    //囲う図形の線上に点が移動する
-    if (key == "c") {
-      pointPosSet = true;
-    }
-    else if(key == "v"){
-      pointPosSet = false;
-    }
+    // //囲う図形の線上に点が移動する
+    // if (key == "c") {
+    //   pointPosSet = true;
+    // }
+    // else if (key == "v") {
+    //   pointPosSet = false;
+    // }
 
-    //移動前の位置のキーフレームを打つ
-    if (key == "i") {
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          iK[i][j].x = pP[i][j].x;
-          iK[i][j].y = pP[i][j].y;
-        }
-      }
-    }
+    // //移動前の位置のキーフレームを打つ
+    // if (key == "i") {
+    //   for (let i = 0; i < cols; i++) {
+    //     for (let j = 0; j < rows; j++) {
+    //       iK[i][j].x = pP[i][j].x;
+    //       iK[i][j].y = pP[i][j].y;
+    //     }
+    //   }
+    // }
 
-    //移動後の位置のキーフレームを打つ
-    if (key == "l") {
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          lK[i][j].x = pP[i][j].x;
-          lK[i][j].y = pP[i][j].y;
-        }
-      }
-    }
+    // //移動後の位置のキーフレームを打つ
+    // if (key == "l") {
+    //   for (let i = 0; i < cols; i++) {
+    //     for (let j = 0; j < rows; j++) {
+    //       lK[i][j].x = pP[i][j].x;
+    //       lK[i][j].y = pP[i][j].y;
+    //     }
+    //   }
+    // }
 
-    //移動前の位置にポイントを移動させる
-    if (key == "o") {
-      isMove = false;
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          pP[i][j].x = iK[i][j].x;
-          pP[i][j].y = iK[i][j].y;
-        }
-      }
-    }
+    // //移動前の位置にポイントを移動させる
+    // if (key == "o") {
+    //   isMove = false;
+    //   for (let i = 0; i < cols; i++) {
+    //     for (let j = 0; j < rows; j++) {
+    //       pP[i][j].x = iK[i][j].x;
+    //       pP[i][j].y = iK[i][j].y;
+    //     }
+    //   }
+    // }
 
-    //アニメーションさせる
-    if (key == "k") {
-      isMove = true;
-      stopTime = 0;
-    }
-  }
+    // //アニメーションさせる
+    // if (key == "k") {
+    //   isMove = true;
+    //   stopTime = 0;
+    // }
+  // }
 
   //アニメーションの設定
   if (isMove) {
@@ -297,7 +307,7 @@ function draw() {
       if (mouseIsPressed == true) {
         if (keyIsPressed) {
           if (key == "a") {
-            let d = dist(pP[i][j].x,　pP[i][j].y,　mouseX - width / 2,　mouseY - height / 2);
+            let d = dist(pP[i][j].x, pP[i][j].y, mouseX - width / 2, mouseY - height / 2);
             if (d < 10) {
               pP[i][j].x = mouseX - width / 2;
               pP[i][j].y = mouseY - height / 2;
@@ -362,7 +372,7 @@ function draw() {
     if (mouseIsPressed == true) {
       let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
 
-      if (dis < w/4) {
+      if (dis < w / 4) {
         mark[i].mx = mouseX - width / 2;
         mark[i].my = mouseY - height / 2;
       }
@@ -394,7 +404,7 @@ function draw() {
     line(mark[markNum / 3 - 1].mx, mark[markNum / 3 - 1].my, mark[0].mx, mark[0].my);
 
     //左目を囲う図形の描画
-    for (let k = markNum / 3 ; k < markNum / 3 * 2 - 1; k++) {
+    for (let k = markNum / 3; k < markNum / 3 * 2 - 1; k++) {
       strokeWeight(5);
       line(mark[k].mx, mark[k].my, mark[k + 1].mx, mark[k + 1].my);
       strokeWeight(30);
@@ -426,21 +436,21 @@ function draw() {
         if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
           if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
             if (d < w / 2) {
-              if(0 <= k && k < markNum/3 - 1){
+              if (0 <= k && k < markNum / 3 - 1) {
                 fill(255, 0, 0);
                 noStroke();
                 ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
               }
-              else if(markNum/3 <= k && k < markNum/3 * 2 - 1){
+              else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
                 fill(0, 255, 0);
                 noStroke();
                 ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-              } 
-              else if(markNum/3 * 2 <= k && k < markNum - 1){
+              }
+              else if (markNum / 3 * 2 <= k && k < markNum - 1) {
                 fill(0, 0, 255);
                 noStroke();
                 ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-              }  
+              }
             }
           }
         }
@@ -449,7 +459,7 @@ function draw() {
           if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
             if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
               if (d < w / 2) {
-                if(0 <= k && k < markNum/3 - 1){
+                if (0 <= k && k < markNum / 3 - 1) {
                   // 線分が垂直の場合
                   if (mark[k].mx == mark[k + 1].mx) {
                     pOL[i][j].pOLx = mark[k].mx;
@@ -461,39 +471,7 @@ function draw() {
                     pOL[i][j].pOLx = pT[i][j].x;
                     pOL[i][j].pOLy = mark[k].my;
                   }
-                
-                  //それ以外
-                  else {
-                    let m1, m2, l1, l2;
-                    //線分の傾き
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
-                    //線分のY切片
-                    l1 = mark[k].my - (m1 * mark[k].mx);
 
-                    //垂線の傾き
-                    m2 = -1 / m1;
-                    //垂線のY切片
-                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
-
-                    // 交点算出
-                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
-                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
-                  }
-                }
-                
-                else if(markNum/3 <= k && k < markNum/3 * 2 - 1){
-                  // 線分が垂直の場合
-                  if (mark[k].mx == mark[k + 1].mx) {
-                    pOL[i][j].pOLx = mark[k].mx;
-                    pOL[i][j].pOLy = pT[i][j].y;
-                  }
-
-                  // 線分が水平の場合
-                  else if (mark[k].my == mark[k + 1].my) {
-                    pOL[i][j].pOLx = pT[i][j].x;
-                    pOL[i][j].pOLy = mark[k].my;
-                  }
-                
                   //それ以外
                   else {
                     let m1, m2, l1, l2;
@@ -513,7 +491,7 @@ function draw() {
                   }
                 }
 
-                else if(markNum/3 * 2 <= k && k < markNum - 1){
+                else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
                   // 線分が垂直の場合
                   if (mark[k].mx == mark[k + 1].mx) {
                     pOL[i][j].pOLx = mark[k].mx;
@@ -525,7 +503,7 @@ function draw() {
                     pOL[i][j].pOLx = pT[i][j].x;
                     pOL[i][j].pOLy = mark[k].my;
                   }
-                
+
                   //それ以外
                   else {
                     let m1, m2, l1, l2;
@@ -544,7 +522,39 @@ function draw() {
                     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
                   }
                 }
-                else{
+
+                else if (markNum / 3 * 2 <= k && k < markNum - 1) {
+                  // 線分が垂直の場合
+                  if (mark[k].mx == mark[k + 1].mx) {
+                    pOL[i][j].pOLx = mark[k].mx;
+                    pOL[i][j].pOLy = pT[i][j].y;
+                  }
+
+                  // 線分が水平の場合
+                  else if (mark[k].my == mark[k + 1].my) {
+                    pOL[i][j].pOLx = pT[i][j].x;
+                    pOL[i][j].pOLy = mark[k].my;
+                  }
+
+                  //それ以外
+                  else {
+                    let m1, m2, l1, l2;
+                    //線分の傾き
+                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
+                    //線分のY切片
+                    l1 = mark[k].my - (m1 * mark[k].mx);
+
+                    //垂線の傾き
+                    m2 = -1 / m1;
+                    //垂線のY切片
+                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
+
+                    // 交点算出
+                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
+                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
+                  }
+                }
+                else {
                   pOL[i][j].pOLx = pT[i][j].x;
                   pOL[i][j].pOLy = pT[i][j].y;
                 }
@@ -563,8 +573,65 @@ function draw() {
   }
 }
 
-function randomRectangle() {
-  
+function TextureButton() {
+  pointPosSet = true;
+}
+
+function ResetButton() {
+  pointPosSet = false;
+
+  let pPx = -width / 2;
+  let pTx = -width / 2;
+  for (let i = 0; i < cols; i++) {
+    pP[i] = [];
+    pT[i] = [];
+
+    let pPy = -height / 2;
+    let pTy = -height / 2;
+    for (let j = 0; j < rows; j++) {
+      pP[i][j] = new pointPosition(pPx, pPy);
+      pT[i][j] = new pointTexture(pTx, pTy);
+      pPy = pPy + w;
+      pTy = pTy + w;
+    }
+    pPx = pPx + w;
+    pTx = pTx + w;
+  }
+}
+
+function TDecisionButton() {
+  pointPosSet = false;
+
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      iK[i][j].x = pP[i][j].x;
+      iK[i][j].y = pP[i][j].y;
+    }
+  }
+}
+
+function DeformButton() {
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      lK[i][j].x = pP[i][j].x;
+      lK[i][j].y = pP[i][j].y;
+    }
+  }
+}
+
+function DDecisionButton() {
+  isMove = false;
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      pP[i][j].x = iK[i][j].x;
+      pP[i][j].y = iK[i][j].y;
+    }
+  }
+}
+
+function AnimationButton() {
+  isMove = true;
+  stopTime = 0;
 }
 
 class pointPosition {
