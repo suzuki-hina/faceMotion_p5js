@@ -48,10 +48,10 @@ function setup() {
 
   if(windowWidth <= windowHeight){
     windowBase = windowWidth;
-    w = winÏdowWidth / cols;
+    w = windowWidth / cols;
     lineLength = windowBase / 10;
     windowBaseHarf = windowWidth / 2;
-  }else{
+  }else if(windowWidth > windowHeight){
     windowBase = windowHeight;
     w = windowHeight / rows;
     lineLength = windowBase / 10;
@@ -306,31 +306,13 @@ function draw() {
       let x1 = pP[i][j].x;
       let y1 = pP[i][j].y;
       let u = map(pT[i][j].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
-      let v1 = map(
-        pT[i][j].y,
-        0 - height / 2,
-        w * (rows - 1) - height / 2,
-        0,
-        1
-      );
+      let v1 = map(pT[i][j].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
       vertex(x1, y1, u, v1);
 
       let x2 = pP[i][j + 1].x;
       let y2 = pP[i][j + 1].y;
-      let u2 = map(
-        pT[i][j + 1].x,
-        0 - width / 2,
-        w * (cols - 1) - width / 2,
-        0,
-        1
-      );
-      let v2 = map(
-        pT[i][j + 1].y,
-        0 - height / 2,
-        w * (rows - 1) - height / 2,
-        0,
-        1
-      );
+      let u2 = map(pT[i][j + 1].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
+      let v2 = map(pT[i][j + 1].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
       vertex(x2, y2, u2, v2);
     }
     endShape();
