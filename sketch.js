@@ -5,7 +5,6 @@ let cols = 20 / res;
 let rows = 20 / res;
 let windowBase;
 let w;
-let windowBaseHarf;
 
 //点の表示・非表示の変数
 let pointColorChanger = true;
@@ -22,7 +21,6 @@ let markColorChanger = true;
 //囲う線上にある点
 let pointPosSet = false;
 let pOL = [];
-let lineLength;
 
 //アニメーションのフレームの前後
 let iK = [];
@@ -38,6 +36,13 @@ let moveTime = 0;
 let stopTime = 0;
 let isMove = false;
 
+//ボタンつくる
+let textureButton;
+let resetButton;
+let deformButton;
+let animationButton;
+
+
 function setup() {
   //ウィンドウのスワイプを止める
   window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
@@ -49,13 +54,9 @@ function setup() {
   if(windowWidth <= windowHeight){
     windowBase = windowWidth;
     w = windowWidth / cols;
-    lineLength = windowBase / 10;
-    windowBaseHarf = windowWidth / 2;
   }else if(windowWidth > windowHeight){
     windowBase = windowHeight;
     w = windowHeight / rows;
-    lineLength = windowBase / 10;
-    windowBaseHarf = windowHeight / 2;
   }
 
   //ポイントの位置とテクスチャの配列設定
@@ -85,64 +86,64 @@ function setup() {
   }
 
   //右目を囲う図形の初期位置
-  mark[0].mx = lineLength * 2 - windowBaseHarf;
-  mark[0].my = lineLength * 2 - windowBaseHarf;
-  mark[1].mx = lineLength * 3 - windowBaseHarf;
-  mark[1].my = lineLength * 2 - windowBaseHarf;
-  mark[2].mx = lineLength * 4 - windowBaseHarf;
-  mark[2].my = lineLength * 2 - windowBaseHarf;
-  mark[3].mx = lineLength * 4 - windowBaseHarf;
-  mark[3].my = lineLength * 3 - windowBaseHarf;
-  mark[4].mx = lineLength * 4 - windowBaseHarf;
-  mark[4].my = lineLength * 4 - windowBaseHarf;
-  mark[5].mx = lineLength * 3 - windowBaseHarf;
-  mark[5].my = lineLength * 4 - windowBaseHarf;
-  mark[6].mx = lineLength * 2 - windowBaseHarf;
-  mark[6].my = lineLength * 4 - windowBaseHarf;
-  mark[7].mx = lineLength * 2 - windowBaseHarf;
-  mark[7].my = lineLength * 3 - windowBaseHarf;
-  mark[8].mx = lineLength * 2 - windowBaseHarf;
-  mark[8].my = lineLength * 2 - windowBaseHarf;
+  mark[0].mx = w * 2 - width/2;
+  mark[0].my = w * 2 - height/2;
+  mark[1].mx = w * 3 - width/2;
+  mark[1].my = w * 2 - height/2;
+  mark[2].mx = w * 4 - width/2;
+  mark[2].my = w * 2 - height/2;
+  mark[3].mx = w * 4 - width/2;
+  mark[3].my = w * 3 - height/2;
+  mark[4].mx = w * 4 - width/2;
+  mark[4].my = w * 4 - height/2;
+  mark[5].mx = w * 3 - width/2;
+  mark[5].my = w * 4 - height/2;
+  mark[6].mx = w * 2 - width/2;
+  mark[6].my = w * 4 - height/2;
+  mark[7].mx = w * 2 - width/2;
+  mark[7].my = w * 3 - height/2;
+  mark[8].mx = w * 2 - width/2;
+  mark[8].my = w * 2 - height/2;
 
   //左目を囲う図形の初期位置
-  mark[9].mx = lineLength * 6 - windowBaseHarf;
-  mark[9].my = lineLength * 2 - windowBaseHarf;
-  mark[10].mx = lineLength * 7 - windowBaseHarf;
-  mark[10].my = lineLength * 2 - windowBaseHarf;
-  mark[11].mx = lineLength * 8 - windowBaseHarf;
-  mark[11].my = lineLength * 2 - windowBaseHarf;
-  mark[12].mx = lineLength * 8 - windowBaseHarf;
-  mark[12].my = lineLength * 3 - windowBaseHarf;
-  mark[13].mx = lineLength * 8 - windowBaseHarf;
-  mark[13].my = lineLength * 4 - windowBaseHarf;
-  mark[14].mx = lineLength * 7 - windowBaseHarf;
-  mark[14].my = lineLength * 4 - windowBaseHarf;
-  mark[15].mx = lineLength * 6 - windowBaseHarf;
-  mark[15].my = lineLength * 4 - windowBaseHarf;
-  mark[16].mx = lineLength * 6 - windowBaseHarf;
-  mark[16].my = lineLength * 3 - windowBaseHarf;
-  mark[17].mx = lineLength * 6 - windowBaseHarf;
-  mark[17].my = lineLength * 2 - windowBaseHarf;
+  mark[9].mx = w * 6 - width/2;
+  mark[9].my = w * 2 - height/2;
+  mark[10].mx = w * 7 - width/2;
+  mark[10].my = w * 2 - height/2;
+  mark[11].mx = w * 8 - width/2;
+  mark[11].my = w * 2 - height/2;
+  mark[12].mx = w * 8 - width/2;
+  mark[12].my = w * 3 - height/2;
+  mark[13].mx = w * 8 - width/2;
+  mark[13].my = w * 4 - height/2;
+  mark[14].mx = w * 7 - width/2;
+  mark[14].my = w * 4 - height/2;
+  mark[15].mx = w * 6 - width/2;
+  mark[15].my = w * 4 - height/2;
+  mark[16].mx = w * 6 - width/2;
+  mark[16].my = w * 3 - height/2;
+  mark[17].mx = w * 6 - width/2;
+  mark[17].my = w * 2 - height/2;
 
   //口を囲う図形の初期位置
-  mark[18].mx = lineLength * 2 - windowBaseHarf;
-  mark[18].my = lineLength * 6 - windowBaseHarf;
-  mark[19].mx = lineLength * 5 - windowBaseHarf;
-  mark[19].my = lineLength * 6 - windowBaseHarf;
-  mark[20].mx = lineLength * 8 - windowBaseHarf;
-  mark[20].my = lineLength * 6 - windowBaseHarf;
-  mark[21].mx = lineLength * 8 - windowBaseHarf;
-  mark[21].my = lineLength * 7 - windowBaseHarf;
-  mark[22].mx = lineLength * 8 - windowBaseHarf;
-  mark[22].my = lineLength * 8 - windowBaseHarf;
-  mark[23].mx = lineLength * 5 - windowBaseHarf;
-  mark[23].my = lineLength * 8 - windowBaseHarf;
-  mark[24].mx = lineLength * 2 - windowBaseHarf;
-  mark[24].my = lineLength * 8 - windowBaseHarf;
-  mark[25].mx = lineLength * 2 - windowBaseHarf;
-  mark[25].my = lineLength * 7 - windowBaseHarf;
-  mark[26].mx = lineLength * 2 - windowBaseHarf;
-  mark[26].my = lineLength * 6 - windowBaseHarf;
+  mark[18].mx = w * 2 - width/2;
+  mark[18].my = w * 6 - height/2;
+  mark[19].mx = w * 5 - width/2;
+  mark[19].my = w * 6 - height/2;
+  mark[20].mx = w * 8 - width/2;
+  mark[20].my = w * 6 - height/2;
+  mark[21].mx = w * 8 - width/2;
+  mark[21].my = w * 7 - height/2;
+  mark[22].mx = w * 8 - width/2;
+  mark[22].my = w * 8 - height/2;
+  mark[23].mx = w * 5 - width/2;
+  mark[23].my = w * 8 - height/2;
+  mark[24].mx = w * 2 - width/2;
+  mark[24].my = w * 8 - height/2;
+  mark[25].mx = w * 2 - width/2;
+  mark[25].my = w * 7 - height/2;
+  mark[26].mx = w * 2 - width/2;
+  mark[26].my = w * 6 - height/2;
 
   //パーツを囲う図形の線上の点の配列設定
   //初期フレームの配列設定
@@ -171,6 +172,23 @@ function setup() {
     iKx = iKx + w;
     lKx = lKx + w;
   }
+
+  //ボタンの作成
+  textureButton = createButton("texture");
+  textureButton.position(w, w * 9);
+  textureButton.mousePressed(randomRectangle);
+
+  resetButton = createButton("reset");
+  resetButton.position(w * 2, w * 9);
+  resetButton.mousePressed(randomRectangle);
+
+  deformButton = createButton("deform");
+  deformButton.position(w * 3, w * 9);
+  deformButton.mousePressed(randomRectangle);
+
+  animationButton = createButton("animation");
+  animationButton.position(w * 4, w * 9);
+  animationButton.mousePressed(randomRectangle);
 }
 
 function draw() {
@@ -279,12 +297,7 @@ function draw() {
       if (mouseIsPressed == true) {
         if (keyIsPressed) {
           if (key == "a") {
-            let d = dist(
-              pP[i][j].x,
-              pP[i][j].y,
-              mouseX - width / 2,
-              mouseY - height / 2
-            );
+            let d = dist(pP[i][j].x,　pP[i][j].y,　mouseX - width / 2,　mouseY - height / 2);
             if (d < 10) {
               pP[i][j].x = mouseX - width / 2;
               pP[i][j].y = mouseY - height / 2;
@@ -548,6 +561,10 @@ function draw() {
       }
     }
   }
+}
+
+function randomRectangle() {
+  
 }
 
 class pointPosition {
