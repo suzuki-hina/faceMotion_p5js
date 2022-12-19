@@ -305,7 +305,7 @@ function draw() {
   }
 
   //マウスによる移動
-  if (markMouseMove = true) {
+  if (markMouseMove == true) {
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         if (mouseIsPressed == true) {
@@ -582,6 +582,7 @@ function draw() {
 function TextureButton() {
   pointPosSet = true;
   pointColorChanger = true;
+  markMouseMove = false;
   lineMouseMove = true;
   lineColorChanger = true;
   markColorChanger = true;
