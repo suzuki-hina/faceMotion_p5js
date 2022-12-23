@@ -381,7 +381,7 @@ function draw() {
           if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
             if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
               if (d < w / 2) {
-                if ((0 <= k && k < markNum / 3 - 1)||(markNum / 3 <= k && k < markNum / 3 * 2 - 1)||(markNum / 3 * 2 <= k && k < markNum - 1)) {
+                if (0 <= k && k < markNum / 3 - 1) {
                   // 線分が垂直の場合
                   if (mark[k].mx == mark[k + 1].mx) {
                     pOL[i][j].pOLx = mark[k].mx;
@@ -413,69 +413,69 @@ function draw() {
                   }
                 }
 
-                // else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
-                //   // 線分が垂直の場合
-                //   if (mark[k].mx == mark[k + 1].mx) {
-                //     pOL[i][j].pOLx = mark[k].mx;
-                //     pOL[i][j].pOLy = pT[i][j].y;
-                //   }
+                else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
+                  // 線分が垂直の場合
+                  if (mark[k].mx == mark[k + 1].mx) {
+                    pOL[i][j].pOLx = mark[k].mx;
+                    pOL[i][j].pOLy = pT[i][j].y;
+                  }
 
-                //   // 線分が水平の場合
-                //   else if (mark[k].my == mark[k + 1].my) {
-                //     pOL[i][j].pOLx = pT[i][j].x;
-                //     pOL[i][j].pOLy = mark[k].my;
-                //   }
+                  // 線分が水平の場合
+                  else if (mark[k].my == mark[k + 1].my) {
+                    pOL[i][j].pOLx = pT[i][j].x;
+                    pOL[i][j].pOLy = mark[k].my;
+                  }
 
-                //   //それ以外
-                //   else {
-                //     let m1, m2, l1, l2;
-                //     //線分の傾き
-                //     m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
-                //     //線分のY切片
-                //     l1 = mark[k].my - (m1 * mark[k].mx);
+                  //それ以外
+                  else {
+                    let m1, m2, l1, l2;
+                    //線分の傾き
+                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
+                    //線分のY切片
+                    l1 = mark[k].my - (m1 * mark[k].mx);
 
-                //     //垂線の傾き
-                //     m2 = -1 / m1;
-                //     //垂線のY切片
-                //     l2 = pT[i][j].y - (m2 * pT[i][j].x);
+                    //垂線の傾き
+                    m2 = -1 / m1;
+                    //垂線のY切片
+                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
 
-                //     // 交点算出
-                //     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
-                //     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
-                //   }
-                // }
+                    // 交点算出
+                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
+                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
+                  }
+                }
 
-                // else if (markNum / 3 * 2 <= k && k < markNum - 1) {
-                //   // 線分が垂直の場合
-                //   if (mark[k].mx == mark[k + 1].mx) {
-                //     pOL[i][j].pOLx = mark[k].mx;
-                //     pOL[i][j].pOLy = pT[i][j].y;
-                //   }
+                else if (markNum / 3 * 2 <= k && k < markNum - 1) {
+                  // 線分が垂直の場合
+                  if (mark[k].mx == mark[k + 1].mx) {
+                    pOL[i][j].pOLx = mark[k].mx;
+                    pOL[i][j].pOLy = pT[i][j].y;
+                  }
 
-                //   // 線分が水平の場合
-                //   else if (mark[k].my == mark[k + 1].my) {
-                //     pOL[i][j].pOLx = pT[i][j].x;
-                //     pOL[i][j].pOLy = mark[k].my;
-                //   }
+                  // 線分が水平の場合
+                  else if (mark[k].my == mark[k + 1].my) {
+                    pOL[i][j].pOLx = pT[i][j].x;
+                    pOL[i][j].pOLy = mark[k].my;
+                  }
 
-                //   //それ以外
-                //   else {
-                //     let m1, m2, l1, l2;
-                //     //線分の傾き
-                //     m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
-                //     //線分のY切片
-                //     l1 = mark[k].my - (m1 * mark[k].mx);
+                  //それ以外
+                  else {
+                    let m1, m2, l1, l2;
+                    //線分の傾き
+                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
+                    //線分のY切片
+                    l1 = mark[k].my - (m1 * mark[k].mx);
 
-                //     //垂線の傾き
-                //     m2 = -1 / m1;
-                //     //垂線のY切片
-                //     l2 = pT[i][j].y - (m2 * pT[i][j].x);
+                    //垂線の傾き
+                    m2 = -1 / m1;
+                    //垂線のY切片
+                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
 
-                //     // 交点算出
-                //     pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
-                //     pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
-                //   }
-                // }
+                    // 交点算出
+                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
+                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
+                  }
+                }
                 else {
                   pOL[i][j].pOLx = pT[i][j].x;
                   pOL[i][j].pOLy = pT[i][j].y;
