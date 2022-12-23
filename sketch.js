@@ -181,26 +181,32 @@ function setup() {
   //ボタンの作成
   textureButton = createButton("texture");
   textureButton.position(w, w * 9);
+  textureButton.size(w, w);
   textureButton.mousePressed(TextureButton);
 
   resetButton = createButton("reset");
   resetButton.position(w * 2, w * 9);
+  resetButton.size(w, w);
   resetButton.mousePressed(ResetButton);
 
   TdecisionButton = createButton("Tdecision");
   TdecisionButton.position(w * 3, w * 9);
+  TdecisionButton.size(w, w);
   TdecisionButton.mousePressed(TDecisionButton);
 
   deformButton = createButton("deform");
   deformButton.position(w * 4, w * 9);
+  deformButton.size(w, w);
   deformButton.mousePressed(DeformButton);
 
   DdecisionButton = createButton("Ddecision");
   DdecisionButton.position(w * 5, w * 9);
+  DdecisionButton.size(w, w);
   DdecisionButton.mousePressed(DDecisionButton);
 
   animationButton = createButton("animation");
   animationButton.position(w * 6, w * 9);
+  animationButton.size(w, w);
   animationButton.mousePressed(AnimationButton);
 }
 
