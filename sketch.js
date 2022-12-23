@@ -45,12 +45,6 @@ let TdecisionButton;
 let deformButton;
 let DdecisionButton;
 let animationButton;
-let recordingButton;
-
-//動画のレコーディング
-let recordingChanger = false;
-let isRecording = false;
-
 
 function setup() {
   //ウィンドウのスワイプを止める
@@ -205,11 +199,6 @@ function setup() {
   animationButton.position(w * 6, w * 9);
   animationButton.size(w, w);
   animationButton.mousePressed(AnimationButton);
-
-  recordingButton = createButton("recording");
-  recordingButton.position(w * 7, w * 9);
-  recordingButton.size(w, w);
-  recordingButton.mousePressed(RecordingButton);
 }
 
 function draw() {
@@ -463,15 +452,6 @@ function draw() {
       }
     }
   }
-  if(recordingChanger == true){
-    if(isRecording == true){
-      stopRecording();
-    }else{
-      startRecording();
-    }
-    isRecording = !isRecording;
-    recordingChanger = !recordingChanger;
-  }
 }
 
 function TextureButton() {
@@ -561,10 +541,6 @@ function AnimationButton() {
   markColorChanger = false;
   isMove = true;
   stopTime = 0;
-}
-
-function RecordingButton(){
-  recordingChanger = true;
 }
 
 class pointPosition {
