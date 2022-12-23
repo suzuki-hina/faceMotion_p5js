@@ -251,7 +251,6 @@ function draw() {
     }
   }
 
-
   //テクスチャ平面の描画
   noFill();
   textureMode(NORMAL);
@@ -293,14 +292,14 @@ function draw() {
   //囲う図形のマウス移動
   if (lineMouseMove == true) {
     for (let i = 0; i < markNum; i++) {
-      if (mouseIsPressed == true) {
+      //if (mouseIsPressed == true) {
         let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
 
         if (dis < w / 4) {
           mark[i].mx = mouseX - width / 2;
           mark[i].my = mouseY - height / 2;
         }
-      }
+      //}
     }
   }
 
