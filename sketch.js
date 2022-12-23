@@ -1,8 +1,8 @@
 let img;
 
-let res = 2;
-let cols = 20 / res;
-let rows = 20 / res;
+const res = 2;
+const cols = 20 / res;
+const rows = 20 / res;
 let windowBase;
 let w;
 
@@ -14,7 +14,7 @@ let pP = [];
 let pT = [];
 
 //パーツを囲う線の頂点の数
-let markNum = 27;
+const markNum = 27;
 let mark = [];
 let lineMouseMove = true;
 let lineColorChanger = true;
@@ -208,74 +208,6 @@ function draw() {
   background(0);
   noStroke();
 
-  // if (keyIsPressed) {
-  // // 移動のリセット
-  // if (key == "r") {
-  //   let pPx = -width / 2;
-  //   let pTx = -width / 2;
-  //   for (let i = 0; i < cols; i++) {
-  //     pP[i] = [];
-  //     pT[i] = [];
-
-  //     let pPy = -height / 2;
-  //     let pTy = -height / 2;
-  //     for (let j = 0; j < rows; j++) {
-  //       pP[i][j] = new pointPosition(pPx, pPy);
-  //       pT[i][j] = new pointTexture(pTx, pTy);
-  //       pPy = pPy + w;
-  //       pTy = pTy + w;
-  //     }
-  //     pPx = pPx + w;
-  //     pTx = pTx + w;
-  //   }
-  // }
-
-  // //囲う図形の線上に点が移動する
-  // if (key == "c") {
-  //   pointPosSet = true;
-  // }
-  // else if (key == "v") {
-  //   pointPosSet = false;
-  // }
-
-  // //移動前の位置のキーフレームを打つ
-  // if (key == "i") {
-  //   for (let i = 0; i < cols; i++) {
-  //     for (let j = 0; j < rows; j++) {
-  //       iK[i][j].x = pP[i][j].x;
-  //       iK[i][j].y = pP[i][j].y;
-  //     }
-  //   }
-  // }
-
-  // //移動後の位置のキーフレームを打つ
-  // if (key == "l") {
-  //   for (let i = 0; i < cols; i++) {
-  //     for (let j = 0; j < rows; j++) {
-  //       lK[i][j].x = pP[i][j].x;
-  //       lK[i][j].y = pP[i][j].y;
-  //     }
-  //   }
-  // }
-
-  // //移動前の位置にポイントを移動させる
-  // if (key == "o") {
-  //   isMove = false;
-  //   for (let i = 0; i < cols; i++) {
-  //     for (let j = 0; j < rows; j++) {
-  //       pP[i][j].x = iK[i][j].x;
-  //       pP[i][j].y = iK[i][j].y;
-  //     }
-  //   }
-  // }
-
-  // //アニメーションさせる
-  // if (key == "k") {
-  //   isMove = true;
-  //   stopTime = 0;
-  // }
-  // }
-
   //アニメーションの設定
   if (isMove) {
     moveTime = (Date.now() - startTime) / moveLimit;
@@ -343,17 +275,6 @@ function draw() {
     endShape();
   }
 
-  // //テクスチャ平面の点の表示・非表示
-  // if (keyIsPressed) {
-  //   //線の表示・非表示
-  //   if (key == "w") {
-  //     pointColorChanger = false;
-  //   }
-  //   if (key == "e") {
-  //     pointColorChanger = true;
-  //   }
-  // }
-
   //ポイントの色
   if (pointColorChanger == true) {
     for (let j = 0; j < rows - 1; j++) {
@@ -382,16 +303,6 @@ function draw() {
       }
     }
   }
-
-  // if (keyIsPressed) {
-  //   //線の表示・非表示
-  //   if (key == "z") {
-  //     lineColorChanger = false;
-  //   }
-  //   if (key == "x") {
-  //     lineColorChanger = true;
-  //   }
-  // }
 
   if (lineColorChanger == true) {
     stroke(255);
