@@ -53,7 +53,7 @@ function setup() {
   window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });
 
   createCanvas(windowWidth, windowHeight, WEBGL);
-  img = loadImage("img/parkFace.png");
+  img = loadImage("img/parkFace.jpg");
 
   if (windowWidth <= windowHeight) {
     w = windowWidth / cols;
