@@ -3,7 +3,6 @@ let img;
 const res = 2;
 const cols = 20 / res;
 const rows = 20 / res;
-let windowBase;
 let w;
 
 //点の表示・非表示の変数
@@ -57,30 +56,51 @@ function setup() {
   img = loadImage("img/parkFace.png");
 
   if (windowWidth <= windowHeight) {
-    windowBase = windowWidth;
     w = windowWidth / cols;
   } else if (windowWidth > windowHeight) {
-    windowBase = windowHeight;
     w = windowHeight / rows;
   }
 
   //ポイントの位置とテクスチャの配列設定
+  //パーツを囲う図形の線上の点の配列設定
+  //初期フレームの配列設定
+  //最終フレームの配列設定
   let pPx = -width / 2;
   let pTx = -width / 2;
+  let pOLx = -width / 2;
+  let iKx = -width / 2;
+  let lKx = -width / 2;
+
   for (let i = 0; i < cols; i++) {
     pP[i] = [];
     pT[i] = [];
+    pOL[i] = [];
+    iK[i] = [];
+    lK[i] = [];
 
     let pPy = -height / 2;
     let pTy = -height / 2;
+    let pOLy = -height / 2;
+    let iKy = -height / 2;
+    let lKy = -height / 2;
+
     for (let j = 0; j < rows; j++) {
       pP[i][j] = new pointPosition(pPx, pPy);
       pPy = pPy + w;
       pT[i][j] = new pointTexture(pTx, pTy);
       pTy = pTy + w;
+      pOL[i][j] = new pointOnLine(pOLx, pOLy);
+      pOLy = pOLy + w;
+      iK[i][j] = new initialKeyFrame(iKx, iKy);
+      iKy = iKy + w;
+      lK[i][j] = new lastKeyFrame(lKx, lKy);
+      lKy = lKy + w;
     }
     pPx = pPx + w;
     pTx = pTx + w;
+    pOLx = pOLx + w;
+    iKx = iKx + w;
+    lKx = lKx + w;
   }
 
   //パーツを囲う図形の配列設定
@@ -149,34 +169,6 @@ function setup() {
   mark[25].my = w * 7 - height / 2;
   mark[26].mx = w * 2 - width / 2;
   mark[26].my = w * 6 - height / 2;
-
-  //パーツを囲う図形の線上の点の配列設定
-  //初期フレームの配列設定
-  //最終フレームの配列設定
-  let pOLx = -width / 2;
-  let iKx = -width / 2;
-  let lKx = -width / 2;
-
-  for (let i = 0; i < cols; i++) {
-    pOL[i] = [];
-    iK[i] = [];
-    lK[i] = [];
-
-    let pOLy = -height / 2;
-    let iKy = -height / 2;
-    let lKy = -height / 2;
-    for (let j = 0; j < rows; j++) {
-      pOL[i][j] = new pointOnLine(pOLx, pOLy);
-      pOLy = pOLy + w;
-      iK[i][j] = new initialKeyFrame(iKx, iKy);
-      iKy = iKy + w;
-      lK[i][j] = new lastKeyFrame(lKx, lKy);
-      lKy = lKy + w;
-    }
-    pOLx = pOLx + w;
-    iKx = iKx + w;
-    lKx = lKx + w;
-  }
 
   //ボタンの作成
   textureButton = createButton("texture");
