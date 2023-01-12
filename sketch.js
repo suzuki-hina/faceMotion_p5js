@@ -15,6 +15,8 @@ let pT = [];
 //パーツを囲う線の頂点の数
 const markNum = 27;
 let mark = [];
+const markPosX = [2, 3, 4, 4, 4, 3, 2, 2, 2, 6, 7, 8, 8, 8, 7, 6, 6, 6, 2, 5, 8, 8, 8, 5, 2, 2, 2];
+const markPosY = [2, 2, 2, 3, 4, 4, 4, 3, 2, 2, 2, 2, 3, 4, 4, 4, 3, 2, 6, 6, 6, 7, 8, 8, 8, 7, 6];
 let lineMouseMove = true;
 let lineColorChanger = true;
 
@@ -38,6 +40,9 @@ let moveTime = 0;
 let stopTime = 0;
 let isMove = false;
 
+//録画の変数
+let recordingChander = false;
+
 //ボタンつくる
 let textureButton;
 let resetButton;
@@ -45,6 +50,7 @@ let TdecisionButton;
 let deformButton;
 let DdecisionButton;
 let animationButton;
+let recordingButton;
 
 function setup() {
   //ウィンドウのスワイプを止める
@@ -109,65 +115,11 @@ function setup() {
     mark[i] = new Mark(mx, my);
   }
 
-  //右目を囲う図形の初期位置
-  mark[0].mx = w * 2 - width / 2;
-  mark[0].my = w * 2 - height / 2;
-  mark[1].mx = w * 3 - width / 2;
-  mark[1].my = w * 2 - height / 2;
-  mark[2].mx = w * 4 - width / 2;
-  mark[2].my = w * 2 - height / 2;
-  mark[3].mx = w * 4 - width / 2;
-  mark[3].my = w * 3 - height / 2;
-  mark[4].mx = w * 4 - width / 2;
-  mark[4].my = w * 4 - height / 2;
-  mark[5].mx = w * 3 - width / 2;
-  mark[5].my = w * 4 - height / 2;
-  mark[6].mx = w * 2 - width / 2;
-  mark[6].my = w * 4 - height / 2;
-  mark[7].mx = w * 2 - width / 2;
-  mark[7].my = w * 3 - height / 2;
-  mark[8].mx = w * 2 - width / 2;
-  mark[8].my = w * 2 - height / 2;
-
-  //左目を囲う図形の初期位置
-  mark[9].mx = w * 6 - width / 2;
-  mark[9].my = w * 2 - height / 2;
-  mark[10].mx = w * 7 - width / 2;
-  mark[10].my = w * 2 - height / 2;
-  mark[11].mx = w * 8 - width / 2;
-  mark[11].my = w * 2 - height / 2;
-  mark[12].mx = w * 8 - width / 2;
-  mark[12].my = w * 3 - height / 2;
-  mark[13].mx = w * 8 - width / 2;
-  mark[13].my = w * 4 - height / 2;
-  mark[14].mx = w * 7 - width / 2;
-  mark[14].my = w * 4 - height / 2;
-  mark[15].mx = w * 6 - width / 2;
-  mark[15].my = w * 4 - height / 2;
-  mark[16].mx = w * 6 - width / 2;
-  mark[16].my = w * 3 - height / 2;
-  mark[17].mx = w * 6 - width / 2;
-  mark[17].my = w * 2 - height / 2;
-
-  //口を囲う図形の初期位置
-  mark[18].mx = w * 2 - width / 2;
-  mark[18].my = w * 6 - height / 2;
-  mark[19].mx = w * 5 - width / 2;
-  mark[19].my = w * 6 - height / 2;
-  mark[20].mx = w * 8 - width / 2;
-  mark[20].my = w * 6 - height / 2;
-  mark[21].mx = w * 8 - width / 2;
-  mark[21].my = w * 7 - height / 2;
-  mark[22].mx = w * 8 - width / 2;
-  mark[22].my = w * 8 - height / 2;
-  mark[23].mx = w * 5 - width / 2;
-  mark[23].my = w * 8 - height / 2;
-  mark[24].mx = w * 2 - width / 2;
-  mark[24].my = w * 8 - height / 2;
-  mark[25].mx = w * 2 - width / 2;
-  mark[25].my = w * 7 - height / 2;
-  mark[26].mx = w * 2 - width / 2;
-  mark[26].my = w * 6 - height / 2;
+  //囲う図形の初期位置
+  for (let i = 0; i < markNum; i++) {
+    mark[i].mx = w * markPosX[i] - width / 2;
+    mark[i].my = w * markPosY[i] - height / 2;
+  }
 
   //ボタンの作成
   textureButton = createButton("texture");
@@ -199,6 +151,11 @@ function setup() {
   animationButton.position(w * 6, w * 9);
   animationButton.size(w, w);
   animationButton.mousePressed(AnimationButton);
+
+  recordingButton = createButton("recording");
+  recordingButton.position(w * 7, w * 9);
+  recordingButton.size(w, w);
+  recordingButton.mousePressed(RecordingButton);
 }
 
 function draw() {
@@ -232,6 +189,20 @@ function draw() {
       startTime = Date.now();
     }
   }
+
+  //録画設定
+  if(recordingChander == true){
+    const capture = P5Capture.getInstance();
+    if (capture.state === "idle") {
+      capture.start();
+      AnimationButton();
+    } else {
+      capture.stop();
+      DDecisionButton();
+    }
+    recordingChander = !recordingChander;
+  }
+
 
   //マウスによる移動
   if (markMouseMove == true) {
@@ -537,10 +508,14 @@ function DDecisionButton() {
 }
 
 function AnimationButton() {
-  pointColorChanger = false;
+  pointColorChanger = true;
   markColorChanger = false;
   isMove = true;
   stopTime = 0;
+}
+
+function  RecordingButton() {
+  recordingChander = true;
 }
 
 class pointPosition {
