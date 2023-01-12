@@ -17,7 +17,8 @@ const markNum = 27;
 let mark = [];
 const markPosX = [2, 3, 4, 4, 4, 3, 2, 2, 2, 6, 7, 8, 8, 8, 7, 6, 6, 6, 2, 5, 8, 8, 8, 5, 2, 2, 2];
 const markPosY = [2, 2, 2, 3, 4, 4, 4, 3, 2, 2, 2, 2, 3, 4, 4, 4, 3, 2, 6, 6, 6, 7, 8, 8, 8, 7, 6];
-let lineMouseMove = true;
+let markAllMouseMove = true;
+let lineMouseMove = false;
 let lineColorChanger = true;
 
 //囲う線上にある点
@@ -44,6 +45,7 @@ let isMove = false;
 let recordingChander = false;
 
 //ボタンつくる
+let moveSetButton;
 let textureButton;
 let resetButton;
 let TdecisionButton;
@@ -122,6 +124,11 @@ function setup() {
   }
 
   //ボタンの作成
+  moveSetButton = createButton("moveS");
+  moveSetButton.position(0, w * 9);
+  moveSetButton.size(w, w);
+  moveSetButton.mousePressed(MoveSetButton);
+
   textureButton = createButton("texture");
   textureButton.position(w, w * 9);
   textureButton.size(w, w);
@@ -266,6 +273,48 @@ function draw() {
         if (dis < w / 4) {
           mark[i].mx = mouseX - width / 2;
           mark[i].my = mouseY - height / 2;
+        }
+      }
+    }
+  }
+
+  //囲う図形全体のマウス移動
+  if (markAllMouseMove == true) {
+    for (let i = 0; i < markNum; i++) {
+      if (mouseIsPressed == true) {
+        let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
+
+        if (dis < w / 4) {
+          mark[i].mx = mouseX - width / 2;
+          mark[i].my = mouseY - height / 2;
+
+          let disdisX = pmouseX - mouseX - width / 2;
+          let disdisY = pmouseY - mouseY - height / 2;
+
+          if(0 < i && i < 9){
+            for(let j = 0; j < 8; j++){
+              mark[j].mx = mark[j].mx - disdisX - width / 2;
+              mark[j].my = mark[j].my - disdisY - height / 2;
+              mark[8].mx = mark[0].mx;
+              mark[8].my = mark[0].my;
+            }
+          }
+          else if(9 < i && i < 18){
+            for(let j = 9; j < 17; j++){
+              mark[j].mx = mark[j].mx - disdisX - width / 2;
+              mark[j].my = mark[j].my - disdisY - height / 2;
+              mark[17].mx = mark[9].mx;
+              mark[17].my = mark[9].my;
+            }
+          }
+          else if(18 < i && i < 27){
+            for(let j = 18; j < 26; j++){
+              mark[j].mx = mark[j].mx - disdisX - width / 2;
+              mark[j].my = mark[j].my - disdisY - height / 2;
+              mark[26].mx = mark[18].mx;
+              mark[26].my = mark[18].my;
+            }
+          }        
         }
       }
     }
@@ -425,11 +474,20 @@ function draw() {
   }
 }
 
+function MoveSetButton() {
+  if(lineMouseMove == true && markAllMouseMove == false){
+    lineMouseMove = false;
+    markAllMouseMove = true;
+  }else if(lineMouseMove == false && markAllMouseMove == true){
+    lineMouseMove = true;
+    markAllMouseMove = false;
+  }
+}
+
 function TextureButton() {
   pointPosSet = true;
   pointColorChanger = true;
   markMouseMove = false;
-  lineMouseMove = true;
   lineColorChanger = true;
   markColorChanger = true;
   markMouseMove = false;
@@ -457,7 +515,6 @@ function ResetButton() {
   }
 
   pointColorChanger = true;
-  lineMouseMove = true;
   lineColorChanger = true;
   markColorChanger = true;
   markMouseMove = false;
@@ -475,6 +532,7 @@ function TDecisionButton() {
 
   pointColorChanger = true;
   lineMouseMove = false;
+  markAllMouseMove = false;
   lineColorChanger = false;
   markColorChanger = true;
   markMouseMove = true;
