@@ -50,7 +50,7 @@ let TdecisionButton;
 let deformButton;
 let DdecisionButton;
 let animationButton;
-let recordingButton;
+//let recordingButton;
 
 function setup() {
   //ウィンドウのスワイプを止める
@@ -152,10 +152,10 @@ function setup() {
   animationButton.size(w, w);
   animationButton.mousePressed(AnimationButton);
 
-  recordingButton = createButton("recording");
-  recordingButton.position(w * 7, w * 9);
-  recordingButton.size(w, w);
-  recordingButton.mousePressed(RecordingButton);
+  // recordingButton = createButton("recording");
+  // recordingButton.position(w * 7, w * 9);
+  // recordingButton.size(w, w);
+  // recordingButton.mousePressed(RecordingButton);
 }
 
 function draw() {
@@ -190,18 +190,18 @@ function draw() {
     }
   }
 
-  //録画設定
-  if(recordingChander == true){
-    const capture = P5Capture.getInstance();
-    if (capture.state === "idle") {
-      capture.start();
-      AnimationButton();
-    } else {
-      capture.stop();
-      DDecisionButton();
-    }
-    recordingChander = !recordingChander;
-  }
+  // //録画設定
+  // if(recordingChander == true){
+  //   const capture = P5Capture.getInstance();
+  //   if (capture.state === "idle") {
+  //     capture.start();
+  //     AnimationButton();
+  //   } else {
+  //     capture.stop();
+  //     DDecisionButton();
+  //   }
+  //   recordingChander = !recordingChander;
+  // }
 
 
   //マウスによる移動
@@ -514,9 +514,9 @@ function AnimationButton() {
   stopTime = 0;
 }
 
-function  RecordingButton() {
-  recordingChander = true;
-}
+// function  RecordingButton() {
+//   recordingChander = true;
+// }
 
 class pointPosition {
   constructor(x, y) {
