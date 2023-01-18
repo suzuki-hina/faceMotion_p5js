@@ -11,6 +11,7 @@ let pointColorChanger = true;
 //テクスチャのポイントの変数
 let pP = [];
 let pT = [];
+let textureChanger = false;
 
 //パーツを囲う線の頂点の数
 const markNum = 27;
@@ -64,9 +65,9 @@ function setup() {
   img = loadImage("img/parkFace.jpg");
 
   if (windowWidth <= windowHeight) {
-    w = windowWidth / cols;
+    w = windowWidth / (cols - 1);
   } else if (windowWidth > windowHeight) {
-    w = windowHeight / rows;
+    w = windowHeight / (rows - 1);
   }
 
   //ポイントの位置とテクスチャの配列設定
@@ -213,9 +214,9 @@ function draw() {
 
   //マウスによる移動
   if (markMouseMove == true) {
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        if (mouseIsPressed == true) {
+    if (mouseIsPressed == true) {
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
           let d = dist(pP[i][j].x, pP[i][j].y, mouseX - width / 2, mouseY - height / 2);
           if (d < w / 4) {
             pP[i][j].x = mouseX - width / 2;
@@ -227,26 +228,28 @@ function draw() {
   }
 
   //テクスチャ平面の描画
-  noFill();
-  textureMode(NORMAL);
-
-  for (let j = 0; j < rows - 1; j++) {
-    beginShape(TRIANGLE_STRIP);
-    texture(img);
-    for (let i = 0; i < cols; i++) {
-      let x1 = pP[i][j].x;
-      let y1 = pP[i][j].y;
-      let u = map(pT[i][j].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
-      let v1 = map(pT[i][j].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
-      vertex(x1, y1, u, v1);
-
-      let x2 = pP[i][j + 1].x;
-      let y2 = pP[i][j + 1].y;
-      let u2 = map(pT[i][j + 1].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
-      let v2 = map(pT[i][j + 1].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
-      vertex(x2, y2, u2, v2);
+  if(textureChanger == true){
+    noFill();
+    textureMode(NORMAL);
+  
+    for (let j = 0; j < rows - 1; j++) {
+      beginShape(TRIANGLE_STRIP);
+      texture(img);
+      for (let i = 0; i < cols; i++) {
+        let x1 = pP[i][j].x;
+        let y1 = pP[i][j].y;
+        let u = map(pT[i][j].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
+        let v1 = map(pT[i][j].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
+        vertex(x1, y1, u, v1);
+  
+        let x2 = pP[i][j + 1].x;
+        let y2 = pP[i][j + 1].y;
+        let u2 = map(pT[i][j + 1].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
+        let v2 = map(pT[i][j + 1].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
+        vertex(x2, y2, u2, v2);
+      }
+      endShape();
     }
-    endShape();
   }
 
   //ポイントの色
@@ -266,10 +269,9 @@ function draw() {
 
   //囲う図形のマウス移動
   if (lineMouseMove == true) {
-    for (let i = 0; i < markNum; i++) {
-      if (mouseIsPressed == true) {
+    if (mouseIsPressed == true) {
+      for (let i = 0; i < markNum; i++) {
         let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
-
         if (dis < w / 4) {
           mark[i].mx = mouseX - width / 2;
           mark[i].my = mouseY - height / 2;
@@ -280,8 +282,8 @@ function draw() {
 
   //囲う図形全体のマウス移動
   if (markAllMouseMove == true) {
-    for (let i = 0; i < markNum; i++) {
-      if (mouseIsPressed == true) {
+    if (mouseIsPressed == true) {
+      for (let i = 0; i < markNum; i++) {    
         let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
 
         if (dis < w / 4) {
@@ -617,3 +619,4 @@ class lastKeyFrame {
     this.y = y;
   }
 }
+
