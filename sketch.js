@@ -11,7 +11,7 @@ let pointColorChanger = true;
 //テクスチャのポイントの変数
 let pP = [];
 let pT = [];
-let textureChanger = false;
+let textureChanger = true;
 
 //パーツを囲う線の頂点の数
 const markNum = 27;
