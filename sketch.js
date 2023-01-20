@@ -6,27 +6,28 @@ const rows = 20 / res;
 let w;
 
 //点の表示・非表示の変数
-let pointColorChanger = true;
+let pointColorChanger = false;
 
 //テクスチャのポイントの変数
 let pP = [];
 let pT = [];
-let textureChanger = true;
+let textureChanger = false;
 
 //パーツを囲う線の頂点の数
 const markNum = 27;
 let mark = [];
 const markPosX = [2, 3, 4, 4, 4, 3, 2, 2, 2, 6, 7, 8, 8, 8, 7, 6, 6, 6, 2, 5, 8, 8, 8, 5, 2, 2, 2];
 const markPosY = [2, 2, 2, 3, 4, 4, 4, 3, 2, 2, 2, 2, 3, 4, 4, 4, 3, 2, 6, 6, 6, 7, 8, 8, 8, 7, 6];
-let markAllMouseMove = true;
+let markChanger = false;
+let markAllMouseMove = false;
 let lineMouseMove = false;
-let lineColorChanger = true;
+let lineColorChanger = false;
 
 //囲う線上にある点
 let pointPosSet = false;
 let pOL = [];
 let markMouseMove = false;
-let markColorChanger = true;
+let markColorChanger = false;
 
 //アニメーションのフレームの前後
 let iK = [];
@@ -42,17 +43,17 @@ let moveTime = 0;
 let stopTime = 0;
 let isMove = false;
 
-//録画の変数
-let recordingChander = false;
+// //録画の変数
+// let recordingChander = false;
 
 //ボタンつくる
-let moveSetButton;
-let textureButton;
-let resetButton;
-let TdecisionButton;
-let deformButton;
-let DdecisionButton;
-let animationButton;
+// let moveSetButton;
+// let textureButton;
+// let resetButton;
+// let TdecisionButton;
+// let deformButton;
+// let DdecisionButton;
+// let animationButton;
 //let recordingButton;
 
 function setup() {
@@ -125,45 +126,31 @@ function setup() {
   }
 
   //ボタンの作成
-  moveSetButton = createButton("moveS");
-  moveSetButton.position(0, w * 9);
-  moveSetButton.size(w, w);
-  moveSetButton.mousePressed(MoveSetButton);
+  select("#button_start").mouseClicked(StartButton);
 
-  textureButton = createButton("texture");
-  textureButton.position(w, w * 9);
-  textureButton.size(w, w);
-  textureButton.mousePressed(TextureButton);
+  select("#button_return_01").mouseClicked(Return01Button);
+  select("#button_ok_01").mouseClicked(Ok01Button);
 
-  resetButton = createButton("reset");
-  resetButton.position(w * 2, w * 9);
-  resetButton.size(w, w);
-  resetButton.mousePressed(ResetButton);
+  select("#button_ex_01").mouseClicked(Ex01Button);
 
-  TdecisionButton = createButton("Tdecision");
-  TdecisionButton.position(w * 3, w * 9);
-  TdecisionButton.size(w, w);
-  TdecisionButton.mousePressed(TDecisionButton);
+  select("#button_tool_01").mouseClicked(Tool01Button);
+  select("#button_tool_02").mouseClicked(Tool02Button);
+  select("#button_tool_03").mouseClicked(Tool03Button);
+  select("#button_return_02").mouseClicked(Return02Button);
+  select("#button_ok_02").mouseClicked(Ok02Button);
 
-  deformButton = createButton("deform");
-  deformButton.position(w * 4, w * 9);
-  deformButton.size(w, w);
-  deformButton.mousePressed(DeformButton);
+  select("#button_ex_02").mouseClicked(Ex02Button);
 
-  DdecisionButton = createButton("Ddecision");
-  DdecisionButton.position(w * 5, w * 9);
-  DdecisionButton.size(w, w);
-  DdecisionButton.mousePressed(DDecisionButton);
+  select("#button_tool_04").mouseClicked(Tool04Button);
+  select("#button_return_03").mouseClicked(Return02Button);
+  select("#button_ok_03").mouseClicked(Ok03Button);
 
-  animationButton = createButton("animation");
-  animationButton.position(w * 6, w * 9);
-  animationButton.size(w, w);
-  animationButton.mousePressed(AnimationButton);
+  select("#button_ex_03").mouseClicked(Ex03Button);
 
-  // recordingButton = createButton("recording");
-  // recordingButton.position(w * 7, w * 9);
-  // recordingButton.size(w, w);
-  // recordingButton.mousePressed(RecordingButton);
+  select("#button_tool_05").mouseClicked(Tool05Button);
+  select("#button_tool_06").mouseClicked(Tool06Button);
+  select("#button_return_04").mouseClicked(Return04Button);
+  select("#button_ok_04").mouseClicked(Ok04Button);
 }
 
 function draw() {
@@ -211,7 +198,6 @@ function draw() {
   //   recordingChander = !recordingChander;
   // }
 
-
   //マウスによる移動
   if (markMouseMove == true) {
     if (mouseIsPressed == true) {
@@ -227,11 +213,13 @@ function draw() {
     }
   }
 
+
+
   //テクスチャ平面の描画
-  if(textureChanger == true){
+  if (textureChanger == true) {
     noFill();
     textureMode(NORMAL);
-  
+
     for (let j = 0; j < rows - 1; j++) {
       beginShape(TRIANGLE_STRIP);
       texture(img);
@@ -241,7 +229,7 @@ function draw() {
         let u = map(pT[i][j].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
         let v1 = map(pT[i][j].y, 0 - height / 2, w * (rows - 1) - height / 2, 0, 1);
         vertex(x1, y1, u, v1);
-  
+
         let x2 = pP[i][j + 1].x;
         let y2 = pP[i][j + 1].y;
         let u2 = map(pT[i][j + 1].x, 0 - width / 2, w * (cols - 1) - width / 2, 0, 1);
@@ -283,7 +271,7 @@ function draw() {
   //囲う図形全体のマウス移動
   if (markAllMouseMove == true) {
     if (mouseIsPressed == true) {
-      for (let i = 0; i < markNum; i++) {    
+      for (let i = 0; i < markNum; i++) {
         let dis = dist(mark[i].mx, mark[i].my, mouseX - width / 2, mouseY - height / 2);
 
         if (dis < w / 4) {
@@ -293,30 +281,30 @@ function draw() {
           let disdisX = pmouseX - mouseX - width / 2;
           let disdisY = pmouseY - mouseY - height / 2;
 
-          if(0 < i && i < 9){
-            for(let j = 0; j < 8; j++){
+          if (0 < i && i < 9) {
+            for (let j = 0; j < 8; j++) {
               mark[j].mx = mark[j].mx - disdisX - width / 2;
               mark[j].my = mark[j].my - disdisY - height / 2;
               mark[8].mx = mark[0].mx;
               mark[8].my = mark[0].my;
             }
           }
-          else if(9 < i && i < 18){
-            for(let j = 9; j < 17; j++){
+          else if (9 < i && i < 18) {
+            for (let j = 9; j < 17; j++) {
               mark[j].mx = mark[j].mx - disdisX - width / 2;
               mark[j].my = mark[j].my - disdisY - height / 2;
               mark[17].mx = mark[9].mx;
               mark[17].my = mark[9].my;
             }
           }
-          else if(18 < i && i < 27){
-            for(let j = 18; j < 26; j++){
+          else if (18 < i && i < 27) {
+            for (let j = 18; j < 26; j++) {
               mark[j].mx = mark[j].mx - disdisX - width / 2;
               mark[j].my = mark[j].my - disdisY - height / 2;
               mark[26].mx = mark[18].mx;
               mark[26].my = mark[18].my;
             }
-          }        
+          }
         }
       }
     }
@@ -358,115 +346,117 @@ function draw() {
   }
 
   //点と直線の距離
-  for (let k = 0; k < markNum - 1; k++) {
-    for (let j = 0; j < rows - 1; j++) {
-      for (let i = 0; i < cols; i++) {
-        let a = mark[k].my - mark[k + 1].my;
-        let b = -(mark[k].mx - mark[k + 1].mx);
-        let c = (mark[k].my - mark[k + 1].my) * -mark[k].mx + mark[k].my * (mark[k].mx - mark[k + 1].mx);
-        let d = abs(a * pT[i][j].x + b * pT[i][j].y + c) / sqrt(sq(a) + sq(b));
+  if (markChanger == true) {
+    for (let k = 0; k < markNum - 1; k++) {
+      for (let j = 0; j < rows - 1; j++) {
+        for (let i = 0; i < cols; i++) {
+          let a = mark[k].my - mark[k + 1].my;
+          let b = -(mark[k].mx - mark[k + 1].mx);
+          let c = (mark[k].my - mark[k + 1].my) * -mark[k].mx + mark[k].my * (mark[k].mx - mark[k + 1].mx);
+          let d = abs(a * pT[i][j].x + b * pT[i][j].y + c) / sqrt(sq(a) + sq(b));
 
-        if (markColorChanger == true) {
-          if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
-            if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
-              if (d < w / 2) {
-                if (0 <= k && k < markNum / 3 - 1) {
-                  fill(255, 0, 0);
-                  noStroke();
-                  ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-                }
-                else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
-                  fill(0, 255, 0);
-                  noStroke();
-                  ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
-                }
-                else if (markNum / 3 * 2 <= k && k < markNum - 1) {
-                  fill(0, 0, 255);
-                  noStroke();
-                  ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+          if (markColorChanger == true) {
+            if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
+              if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
+                if (d < w / 2) {
+                  if (0 <= k && k < markNum / 3 - 1) {
+                    fill(255, 0, 0);
+                    noStroke();
+                    ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+                  }
+                  else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
+                    fill(0, 255, 0);
+                    noStroke();
+                    ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+                  }
+                  else if (markNum / 3 * 2 <= k && k < markNum - 1) {
+                    fill(0, 0, 255);
+                    noStroke();
+                    ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
+                  }
                 }
               }
             }
           }
-        }
 
-        if (pointPosSet == true) {
-          if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
-            if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
-              if (d < w / 2) {
-                if (0 <= k && k < markNum / 3 - 1) {
-                  if (mark[k].mx == mark[k + 1].mx) {
-                    pOL[i][j].pOLx = mark[k].mx;
-                    pOL[i][j].pOLy = pT[i][j].y;
+          if (pointPosSet == true) {
+            if ((mark[k].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k + 1].mx + w / 2) || (mark[k + 1].mx - w / 2 < pT[i][j].x && pT[i][j].x < mark[k].mx + w / 2)) {
+              if ((mark[k].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k + 1].my + w / 2) || (mark[k + 1].my - w / 2 < pT[i][j].y && pT[i][j].y < mark[k].my + w / 2)) {
+                if (d < w / 2) {
+                  if (0 <= k && k < markNum / 3 - 1) {
+                    if (mark[k].mx == mark[k + 1].mx) {
+                      pOL[i][j].pOLx = mark[k].mx;
+                      pOL[i][j].pOLy = pT[i][j].y;
+                    }
+                    else if (mark[k].my == mark[k + 1].my) {
+                      pOL[i][j].pOLx = pT[i][j].x;
+                      pOL[i][j].pOLy = mark[k].my;
+                    }
+                    else {
+                      let m1, m2, l1, l2;
+                      m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
+                      l1 = mark[k].my - (m1 * mark[k].mx);
+
+                      m2 = -1 / m1;
+                      l2 = pT[i][j].y - (m2 * pT[i][j].x);
+
+                      pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
+                      pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
+                    }
                   }
-                  else if (mark[k].my == mark[k + 1].my) {
-                    pOL[i][j].pOLx = pT[i][j].x;
-                    pOL[i][j].pOLy = mark[k].my;
+                  else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
+                    if (mark[k].mx == mark[k + 1].mx) {
+                      pOL[i][j].pOLx = mark[k].mx;
+                      pOL[i][j].pOLy = pT[i][j].y;
+                    }
+                    else if (mark[k].my == mark[k + 1].my) {
+                      pOL[i][j].pOLx = pT[i][j].x;
+                      pOL[i][j].pOLy = mark[k].my;
+                    }
+                    else {
+                      let m1, m2, l1, l2;
+                      m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
+                      l1 = mark[k].my - (m1 * mark[k].mx);
+
+                      m2 = -1 / m1;
+                      l2 = pT[i][j].y - (m2 * pT[i][j].x);
+
+                      pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
+                      pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
+                    }
+                  }
+                  else if (markNum / 3 * 2 <= k && k < markNum - 1) {
+                    if (mark[k].mx == mark[k + 1].mx) {
+                      pOL[i][j].pOLx = mark[k].mx;
+                      pOL[i][j].pOLy = pT[i][j].y;
+                    }
+                    else if (mark[k].my == mark[k + 1].my) {
+                      pOL[i][j].pOLx = pT[i][j].x;
+                      pOL[i][j].pOLy = mark[k].my;
+                    }
+                    else {
+                      let m1, m2, l1, l2;
+                      m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
+                      l1 = mark[k].my - (m1 * mark[k].mx);
+
+                      m2 = -1 / m1;
+                      l2 = pT[i][j].y - (m2 * pT[i][j].x);
+
+                      pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
+                      pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
+                    }
                   }
                   else {
-                    let m1, m2, l1, l2;
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
-                    l1 = mark[k].my - (m1 * mark[k].mx);
-
-                    m2 = -1 / m1;
-                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
-
-                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
-                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
-                  }
-                }
-                else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
-                  if (mark[k].mx == mark[k + 1].mx) {
-                    pOL[i][j].pOLx = mark[k].mx;
+                    pOL[i][j].pOLx = pT[i][j].x;
                     pOL[i][j].pOLy = pT[i][j].y;
                   }
-                  else if (mark[k].my == mark[k + 1].my) {
-                    pOL[i][j].pOLx = pT[i][j].x;
-                    pOL[i][j].pOLy = mark[k].my;
-                  }
-                  else {
-                    let m1, m2, l1, l2;
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
-                    l1 = mark[k].my - (m1 * mark[k].mx);
 
-                    m2 = -1 / m1;
-                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
+                  pT[i][j].x = pOL[i][j].pOLx;
+                  pT[i][j].y = pOL[i][j].pOLy;
 
-                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
-                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
-                  }
+                  pP[i][j].x = pOL[i][j].pOLx;
+                  pP[i][j].y = pOL[i][j].pOLy;
                 }
-                else if (markNum / 3 * 2 <= k && k < markNum - 1) {
-                  if (mark[k].mx == mark[k + 1].mx) {
-                    pOL[i][j].pOLx = mark[k].mx;
-                    pOL[i][j].pOLy = pT[i][j].y;
-                  }
-                  else if (mark[k].my == mark[k + 1].my) {
-                    pOL[i][j].pOLx = pT[i][j].x;
-                    pOL[i][j].pOLy = mark[k].my;
-                  }
-                  else {
-                    let m1, m2, l1, l2;
-                    m1 = (mark[k + 1].my - mark[k].my) / (mark[k + 1].mx - mark[k].mx);
-                    l1 = mark[k].my - (m1 * mark[k].mx);
-
-                    m2 = -1 / m1;
-                    l2 = pT[i][j].y - (m2 * pT[i][j].x);
-                    
-                    pOL[i][j].pOLx = (l2 - l1) / (m1 - m2);
-                    pOL[i][j].pOLy = (l2 * m1 - l1 * m2) / (m1 - m2);
-                  }
-                }
-                else {
-                  pOL[i][j].pOLx = pT[i][j].x;
-                  pOL[i][j].pOLy = pT[i][j].y;
-                }
-
-                pT[i][j].x = pOL[i][j].pOLx;
-                pT[i][j].y = pOL[i][j].pOLy;
-
-                pP[i][j].x = pOL[i][j].pOLx;
-                pP[i][j].y = pOL[i][j].pOLy;
               }
             }
           }
@@ -476,26 +466,50 @@ function draw() {
   }
 }
 
-function MoveSetButton() {
-  if(lineMouseMove == true && markAllMouseMove == false){
-    lineMouseMove = false;
-    markAllMouseMove = true;
-  }else if(lineMouseMove == false && markAllMouseMove == true){
-    lineMouseMove = true;
-    markAllMouseMove = false;
-  }
+// isMove
+// markMouseMove
+// textureChanger
+// pointColorChanger
+// lineMouseMove
+// markAllMouseMove
+// lineColorChanger
+// markChanger
+// markColorChanger
+// pointPosSet
+
+function StartButton() {
+
 }
 
-function TextureButton() {
-  pointPosSet = true;
-  pointColorChanger = true;
-  markMouseMove = false;
+
+function Return01Button() {
+
+}
+
+function Ok01Button() {
+
+}
+
+
+function Ex01Button() {
+  textureChanger = true;
+  lineMouseMove = false;
+  markAllMouseMove = true;
   lineColorChanger = true;
-  markColorChanger = true;
-  markMouseMove = false;
+  markChanger = true;
 }
 
-function ResetButton() {
+function Tool01Button() {
+  lineMouseMove = false;
+  markAllMouseMove = true;
+}
+
+function Tool02Button() {
+  lineMouseMove = true;
+  markAllMouseMove = false;
+}
+
+function Tool03Button() {
   pointPosSet = false;
 
   let pPx = -width / 2;
@@ -522,7 +536,28 @@ function ResetButton() {
   markMouseMove = false;
 }
 
-function TDecisionButton() {
+function Return02Button() {
+  textureChanger = false;
+  lineMouseMove = false;
+  markAllMouseMove = false;
+  lineColorChanger = false;
+  markChanger = false;
+}
+
+function Ok02Button() {
+  pointPosSet = true;
+  pointColorChanger = true;
+  lineColorChanger = true;
+  markColorChanger = true;
+  markMouseMove = false;
+  lineMouseMove = false;
+  markAllMouseMove = false;
+}
+
+
+
+
+function Ex02Button() {
   pointPosSet = false;
 
   for (let i = 0; i < cols; i++) {
@@ -540,7 +575,21 @@ function TDecisionButton() {
   markMouseMove = true;
 }
 
-function DeformButton() {
+function Tool04Button() {
+
+}
+
+function Return03Button() {
+  pointPosSet = true;
+  pointColorChanger = true;
+  lineColorChanger = true;
+  markColorChanger = true;
+  markMouseMove = false;
+  lineMouseMove = false;
+  markAllMouseMove = true;
+}
+
+function Ok03Button() {
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       lK[i][j].x = pP[i][j].x;
@@ -553,7 +602,9 @@ function DeformButton() {
   markMouseMove = true;
 }
 
-function DDecisionButton() {
+
+
+function Ex03Button() {
   isMove = false;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -561,22 +612,32 @@ function DDecisionButton() {
       pP[i][j].y = iK[i][j].y;
     }
   }
-
-  pointColorChanger = true;
-  markColorChanger = true;
-  markMouseMove = true;
 }
 
-function AnimationButton() {
+function Tool05Button() {
   pointColorChanger = true;
   markColorChanger = false;
   isMove = true;
   stopTime = 0;
 }
 
-// function  RecordingButton() {
-//   recordingChander = true;
-// }
+function Tool06Button() {
+  isMove = false;
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      pP[i][j].x = iK[i][j].x;
+      pP[i][j].y = iK[i][j].y;
+    }
+  }
+}
+
+function Return04Button() {
+
+}
+
+function Ok04Button() {
+
+}
 
 class pointPosition {
   constructor(x, y) {
