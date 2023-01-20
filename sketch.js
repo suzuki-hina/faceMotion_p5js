@@ -135,20 +135,19 @@ function setup() {
 
   select("#button_tool_01").mouseClicked(Tool01Button);
   select("#button_tool_02").mouseClicked(Tool02Button);
-  select("#button_tool_03").mouseClicked(Tool03Button);
   select("#button_return_02").mouseClicked(Return02Button);
   select("#button_ok_02").mouseClicked(Ok02Button);
 
   select("#button_ex_02").mouseClicked(Ex02Button);
 
-  select("#button_tool_04").mouseClicked(Tool04Button);
+  select("#button_tool_03").mouseClicked(Tool03Button);
   select("#button_return_03").mouseClicked(Return02Button);
   select("#button_ok_03").mouseClicked(Ok03Button);
 
   select("#button_ex_03").mouseClicked(Ex03Button);
 
+  select("#button_tool_04").mouseClicked(Tool04Button);
   select("#button_tool_05").mouseClicked(Tool05Button);
-  select("#button_tool_06").mouseClicked(Tool06Button);
   select("#button_return_04").mouseClicked(Return04Button);
   select("#button_ok_04").mouseClicked(Ok04Button);
 }
@@ -487,7 +486,7 @@ function Return01Button() {
 }
 
 function Ok01Button() {
-
+  textureChanger = false;
 }
 
 
@@ -497,6 +496,9 @@ function Ex01Button() {
   markAllMouseMove = true;
   lineColorChanger = true;
   markChanger = true;
+
+  pointColorChanger = true;
+  markColorChanger = true;
 }
 
 function Tool01Button() {
@@ -509,7 +511,59 @@ function Tool02Button() {
   markAllMouseMove = false;
 }
 
+function Return02Button() {
+  textureChanger = false;
+  lineMouseMove = false;
+  markAllMouseMove = false;
+  lineColorChanger = false;
+  markChanger = false;
+
+  pointColorChanger = false;
+  markColorChanger = false;
+}
+
+function Ok02Button() {
+  textureChanger = false;
+  pointPosSet = true;
+  lineColorChanger = true;
+  markMouseMove = false;
+  lineMouseMove = false;
+  markAllMouseMove = false;
+
+  pointColorChanger = true;
+  markColorChanger = true;
+}
+
+function Ex02Button() {
+  textureChanger = true;
+  pointPosSet = false;
+
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      iK[i][j].x = pP[i][j].x;
+      iK[i][j].y = pP[i][j].y;
+    }
+  }
+
+  lineMouseMove = false;
+  markAllMouseMove = false;
+  lineColorChanger = false;
+  markMouseMove = true;
+
+  pointColorChanger = true;
+  markColorChanger = true;
+}
+
 function Tool03Button() {
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      pP[i][j].x = iK[i][j].x;
+      pP[i][j].y = iK[i][j].y;
+    }
+  }
+}
+
+function Return03Button() {
   pointPosSet = false;
 
   let pPx = -width / 2;
@@ -530,66 +584,17 @@ function Tool03Button() {
     pTx = pTx + w;
   }
 
-  pointColorChanger = true;
   lineColorChanger = true;
-  markColorChanger = true;
-  markMouseMove = false;
-}
-
-function Return02Button() {
-  textureChanger = false;
-  lineMouseMove = false;
-  markAllMouseMove = false;
-  lineColorChanger = false;
-  markChanger = false;
-}
-
-function Ok02Button() {
-  pointPosSet = true;
-  pointColorChanger = true;
-  lineColorChanger = true;
-  markColorChanger = true;
-  markMouseMove = false;
-  lineMouseMove = false;
-  markAllMouseMove = false;
-}
-
-
-
-
-function Ex02Button() {
-  pointPosSet = false;
-
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      iK[i][j].x = pP[i][j].x;
-      iK[i][j].y = pP[i][j].y;
-    }
-  }
-
-  pointColorChanger = true;
-  lineMouseMove = false;
-  markAllMouseMove = false;
-  lineColorChanger = false;
-  markColorChanger = true;
-  markMouseMove = true;
-}
-
-function Tool04Button() {
-
-}
-
-function Return03Button() {
-  pointPosSet = true;
-  pointColorChanger = true;
-  lineColorChanger = true;
-  markColorChanger = true;
   markMouseMove = false;
   lineMouseMove = false;
   markAllMouseMove = true;
+
+  pointColorChanger = true;
+  markColorChanger = true;
 }
 
 function Ok03Button() {
+  textureChanger = false;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       lK[i][j].x = pP[i][j].x;
@@ -605,6 +610,7 @@ function Ok03Button() {
 
 
 function Ex03Button() {
+  textureChanger = true;
   isMove = false;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -614,14 +620,14 @@ function Ex03Button() {
   }
 }
 
-function Tool05Button() {
+function Tool04Button() {
   pointColorChanger = true;
   markColorChanger = false;
   isMove = true;
   stopTime = 0;
 }
 
-function Tool06Button() {
+function Tool05Button() {
   isMove = false;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -632,12 +638,29 @@ function Tool06Button() {
 }
 
 function Return04Button() {
+  pointPosSet = false;
 
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      iK[i][j].x = pP[i][j].x;
+      iK[i][j].y = pP[i][j].y;
+    }
+  }
+
+  lineMouseMove = false;
+  markAllMouseMove = false;
+  lineColorChanger = false;
+  markMouseMove = true;
+
+  pointColorChanger = true;
+  markColorChanger = true;
 }
 
 function Ok04Button() {
 
 }
+
+
 
 class pointPosition {
   constructor(x, y) {
