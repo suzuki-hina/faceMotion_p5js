@@ -1,9 +1,12 @@
+let face = document.getElementById('face');
+
 let img;
 
 const res = 2;
 const cols = 20 / res;
 const rows = 20 / res;
 let w;
+let m;
 
 //点の表示・非表示の変数
 let pointColorChanger = false;
@@ -62,14 +65,15 @@ function setup() {
   window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });
 
   //キャンバスの設定
-  createCanvas(windowWidth, windowHeight, WEBGL);
-  img = loadImage("img/parkFace.jpg");
-
   if (windowWidth <= windowHeight) {
     w = windowWidth / (cols - 1);
   } else if (windowWidth > windowHeight) {
     w = windowHeight / (rows - 1);
   }
+
+  let canvas = createCanvas(w * 9, w * 9, WEBGL);
+  canvas.parent(face); 
+  img = loadImage("img/parkFace.jpg");
 
   //ポイントの位置とテクスチャの配列設定
   //パーツを囲う図形の線上の点の配列設定

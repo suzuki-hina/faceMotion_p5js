@@ -9,39 +9,55 @@
   </head>
   
   <body>
-    <button class="start" id="button_start">はじめる</button>
+    <div class="start">
+      <button id="button_start">はじめる</button>
+    </div>
+
+    <div class="title">
+      <h3 id="title_01">写真を選ぶ</h3>
+      <h3 id="title_02">目と口に図形を合わせる</h3>
+      <h3 id="title_03">好きな表情に変形させる</h3>
+      <h3 id="title_04">完成！</h3>
+    </div>
     
-    <h3 class="title" id="title_01">写真を選ぶ</h3>
-    <h3 class="title" id="title_02">目と口に図形を合わせる</h3>
-    <h3 class="title" id="title_03">好きな表情に変形させる</h3>
-    <h3 class="title" id="title_04">完成！</h3>
+    <div id="face"></div>
 
- 
-    <input type="file" id="button_file" accept=".png, .jpeg, .jpg">
-    <button class="tool" id="button_tool_01">△</button>
-    <button class="tool" id="button_tool_02">▲</button>
-    <button class="tool" id="button_tool_03">×</button>
-    <button class="tool" id="button_tool_04">▶️</button>
-    <button class="tool" id="button_tool_05">■</button>
+    <div class="file">
+      <input type="file" id="button_file" accept=".png, .jpeg, .jpg">
+    </div>
+
+    <div class="tool"> 
+      <button id="button_tool_01">△</button>
+      <button id="button_tool_02">▲</button>
+      <button id="button_tool_03">×</button>
+      <button id="button_tool_04">▶️</button>
+      <button id="button_tool_05">■</button>
+    </div>
 
 
-    <button class="return" id="button_return_01">◁</button>
-    <button class="ok" id="button_ok_01">OK</button>
 
-    <button class="ex" id="button_ex_01">OK</button>
+    <div class="menu">
+      <button class="return" id="button_return_01">◁</button>
+      <button class="ok" id="button_ok_01">OK</button>
 
-    <button class="return" id="button_return_02">◁</button>
-    <button class="ok" id="button_ok_02">OK</button>
+      <button class="ex" id="button_ex_01">OK</button>
 
-    <button class="ex" id="button_ex_02">OK</button>
+      <button class="return" id="button_return_02">◁</button>
+      <button class="ok" id="button_ok_02">OK</button>
 
-    <button class="return" id="button_return_03">◁</button>
-    <button class="ok" id="button_ok_03">OK</button>
+      <button class="ex" id="button_ex_02">OK</button>
 
-    <button class="ex" id="button_ex_03">OK</button>
+      <button class="return" id="button_return_03">◁</button>
+      <button class="ok" id="button_ok_03">OK</button>
 
-    <button class="return" id="button_return_04">◁</button>
-    <button class="ok" id="button_ok_04">OK</button>
+      <button class="ex" id="button_ex_03">OK</button>
+
+      <button class="return" id="button_return_04">◁</button>
+      <button class="ok" id="button_ok_04">OK</button>
+    </div>
+
+
+    
 
     <script src="sketch.js"></script>
 
