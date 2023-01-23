@@ -148,10 +148,12 @@ function setup() {
   select("#button_return_04").mouseClicked(Return04Button);
   select("#button_ok_04").mouseClicked(Ok04Button);
 
+  document.getElementById('face').style.visibility = 'hidden';
+
   document.getElementById('button_file').style.display = 'none';
-  document.getElementById('title_01').style.display = 'none';
-  document.getElementById('button_return_01').style.display = 'none';
-  document.getElementById('button_ok_01').style.display = 'none';
+  document.getElementById('title_01').style.visibility = 'hidden';
+  document.getElementById('button_return_01').style.visibility = 'hidden';
+  document.getElementById('button_ok_01').style.visibility = 'hidden';
 
   document.getElementById('button_ex_01').style.display = 'none';
 
@@ -501,29 +503,31 @@ function draw() {
 
 function StartButton() {
   document.getElementById('button_start').style.display = 'none';
+  document.getElementById('face').style.visibility = 'visible';
   document.getElementById('button_file').style.display = 'inline';
-  document.getElementById('title_01').style.display = 'inline';
-  document.getElementById('button_return_01').style.display = 'inline';
-  document.getElementById('button_ok_01').style.display = 'inline';
+  document.getElementById('title_01').style.visibility = 'visible';
+  document.getElementById('button_return_01').style.visibility = 'visible';
+  document.getElementById('button_ok_01').style.visibility = 'visible';
 }
 
 
 function Return01Button() {
   document.getElementById('button_start').style.display = 'inline';
+  document.getElementById('face').style.visibility = 'hidden';
   document.getElementById('button_file').style.display = 'none';
-  document.getElementById('title_01').style.display = 'none';
-  document.getElementById('button_return_01').style.display = 'none';
-  document.getElementById('button_ok_01').style.display = 'none';
+  document.getElementById('title_01').style.visibility = 'hidden';
+  document.getElementById('button_return_01').style.visibility = 'hidden';
+  document.getElementById('button_ok_01').style.visibility = 'hidden';
 }
 
 function Ok01Button() {
   textureChanger = false;
 
-  document.getElementById('button_file').style.display = 'none';
-  document.getElementById('title_01').style.display = 'none';
-  document.getElementById('button_return_01').style.display = 'none';
-  document.getElementById('button_ok_01').style.display = 'none';
-  document.getElementById('button_ex_01').style.display = 'inline';
+  document.getElementById('button_file').style.visibility = 'hidden';
+  document.getElementById('title_01').style.visibility = 'hidden';
+  document.getElementById('button_return_01').style.visibility = 'hidden';
+  document.getElementById('button_ok_01').style.visibility = 'hidden';
+  document.getElementById('button_ex_01').style.visibility = 'visible';
 }
 
 
@@ -537,12 +541,12 @@ function Ex01Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('button_ex_01').style.display = 'none';
-  document.getElementById('title_02').style.display = 'inline';
-  document.getElementById('button_tool_01').style.display = 'inline';
-  document.getElementById('button_tool_02').style.display = 'inline';
-  document.getElementById('button_return_02').style.display = 'inline';
-  document.getElementById('button_ok_02').style.display = 'inline';
+  document.getElementById('button_ex_01').style.visibility = 'hidden';
+  document.getElementById('title_02').style.visibility = 'visible';
+  document.getElementById('button_tool_01').style.visibility = 'visible';
+  document.getElementById('button_tool_02').style.visibility = 'visible';
+  document.getElementById('button_return_02').style.visibility = 'visible';
+  document.getElementById('button_ok_02').style.visibility = 'visible';
 }
 
 function Tool01Button() {
@@ -565,15 +569,15 @@ function Return02Button() {
   pointColorChanger = false;
   markColorChanger = false;
 
-  document.getElementById('button_file').style.display = 'inline';
-  document.getElementById('title_01').style.display = 'inline';
-  document.getElementById('button_return_01').style.display = 'inline';
-  document.getElementById('button_ok_01').style.display = 'inline';
-  document.getElementById('title_02').style.display = 'none';
-  document.getElementById('button_tool_01').style.display = 'none';
-  document.getElementById('button_tool_02').style.display = 'none';
-  document.getElementById('button_return_02').style.display = 'none';
-  document.getElementById('button_ok_02').style.display = 'none';
+  document.getElementById('button_file').style.visibility = 'visible';
+  document.getElementById('title_01').style.visibility = 'visible';
+  document.getElementById('button_return_01').style.visibility = 'visible';
+  document.getElementById('button_ok_01').style.visibility = 'visible';
+  document.getElementById('title_02').style.visibility = 'hidden';
+  document.getElementById('button_tool_01').style.visibility = 'hidden';
+  document.getElementById('button_tool_02').style.visibility = 'hidden';
+  document.getElementById('button_return_02').style.visibility = 'hidden';
+  document.getElementById('button_ok_02').style.visibility = 'hidden';
 }
 
 function Ok02Button() {
@@ -587,12 +591,12 @@ function Ok02Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('title_02').style.display = 'none';
-  document.getElementById('button_tool_01').style.display = 'none';
-  document.getElementById('button_tool_02').style.display = 'none';
-  document.getElementById('button_return_02').style.display = 'none';
-  document.getElementById('button_ok_02').style.display = 'none';
-  document.getElementById('button_ex_02').style.display = 'inline';
+  document.getElementById('title_02').style.visibility = 'hidden';
+  document.getElementById('button_tool_01').style.visibility = 'hidden';
+  document.getElementById('button_tool_02').style.visibility = 'hidden';
+  document.getElementById('button_return_02').style.visibility = 'hidden';
+  document.getElementById('button_ok_02').style.visibility = 'hidden';
+  document.getElementById('button_ex_02').style.visibility = 'visible';
 }
 
 function Ex02Button() {
@@ -614,11 +618,11 @@ function Ex02Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('button_ex_02').style.display = 'none';
-  document.getElementById('title_03').style.display = 'inline';
-  document.getElementById('button_tool_03').style.display = 'inline';
-  document.getElementById('button_return_03').style.display = 'inline';
-  document.getElementById('button_ok_03').style.display = 'inline';
+  document.getElementById('button_ex_02').style.visibility = 'hidden';
+  document.getElementById('title_03').style.visibility = 'visible';
+  document.getElementById('button_tool_03').style.visibility = 'visible';
+  document.getElementById('button_return_03').style.visibility = 'visible';
+  document.getElementById('button_ok_03').style.visibility = 'visible';
 }
 
 function Tool03Button() {
@@ -659,15 +663,15 @@ function Return03Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('title_02').style.display = 'inline';
-  document.getElementById('button_tool_01').style.display = 'inline';
-  document.getElementById('button_tool_02').style.display = 'inline';
-  document.getElementById('button_return_02').style.display = 'inline';
-  document.getElementById('button_ok_02').style.display = 'inline';
-  document.getElementById('title_03').style.display = 'none';
-  document.getElementById('button_tool_03').style.display = 'none';
-  document.getElementById('button_return_03').style.display = 'none';
-  document.getElementById('button_ok_03').style.display = 'none';
+  document.getElementById('title_02').style.visibility = 'visible';
+  document.getElementById('button_tool_01').style.visibility = 'visible';
+  document.getElementById('button_tool_02').style.visibility = 'visible';
+  document.getElementById('button_return_02').style.visibility = 'visible';
+  document.getElementById('button_ok_02').style.visibility = 'visible';
+  document.getElementById('title_03').style.visibility = 'hidden';
+  document.getElementById('button_tool_03').style.visibility = 'hidden';
+  document.getElementById('button_return_03').style.visibility = 'hidden';
+  document.getElementById('button_ok_03').style.visibility = 'hidden';
 }
 
 function Ok03Button() {
@@ -683,11 +687,11 @@ function Ok03Button() {
   markColorChanger = true;
   markMouseMove = true;
 
-  document.getElementById('title_03').style.display = 'none';
-  document.getElementById('button_tool_03').style.display = 'none';
-  document.getElementById('button_return_03').style.display = 'none';
-  document.getElementById('button_ok_03').style.display = 'none';
-  document.getElementById('button_ex_03').style.display = 'inline';
+  document.getElementById('title_03').style.visibility = 'hidden';
+  document.getElementById('button_tool_03').style.visibility = 'hidden';
+  document.getElementById('button_return_03').style.visibility = 'hidden';
+  document.getElementById('button_ok_03').style.visibility = 'hidden';
+  document.getElementById('button_ex_03').style.visibility = 'visible';
 }
 
 
@@ -702,12 +706,12 @@ function Ex03Button() {
     }
   }
 
-  document.getElementById('button_ex_03').style.display = 'none';
-  document.getElementById('title_04').style.display = 'inline';
-  document.getElementById('button_tool_04').style.display = 'inline';
-  document.getElementById('button_tool_05').style.display = 'inline';
-  document.getElementById('button_return_04').style.display = 'inline';
-  document.getElementById('button_ok_04').style.display = 'inline';
+  document.getElementById('button_ex_03').style.visibility = 'hidden';
+  document.getElementById('title_04').style.visibility = 'visible';
+  document.getElementById('button_tool_04').style.visibility = 'visible';
+  document.getElementById('button_tool_05').style.visibility = 'visible';
+  document.getElementById('button_return_04').style.visibility = 'visible';
+  document.getElementById('button_ok_04').style.visibility = 'visible';
 }
 
 function Tool04Button() {
@@ -745,15 +749,15 @@ function Return04Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('title_03').style.display = 'inline';
-  document.getElementById('button_tool_03').style.display = 'inline';
-  document.getElementById('button_return_03').style.display = 'inline';
-  document.getElementById('button_ok_03').style.display = 'inline';
-  document.getElementById('title_04').style.display = 'none';
-  document.getElementById('button_tool_04').style.display = 'none';
-  document.getElementById('button_tool_05').style.display = 'none';
-  document.getElementById('button_return_04').style.display = 'none';
-  document.getElementById('button_ok_04').style.display = 'none';
+  document.getElementById('title_03').style.visibility = 'visible';
+  document.getElementById('button_tool_03').style.visibility = 'visible';
+  document.getElementById('button_return_03').style.visibility = 'visible';
+  document.getElementById('button_ok_03').style.visibility = 'visible';
+  document.getElementById('title_04').style.visibility = 'hidden';
+  document.getElementById('button_tool_04').style.visibility = 'hidden';
+  document.getElementById('button_tool_05').style.visibility = 'hidden';
+  document.getElementById('button_return_04').style.visibility = 'hidden';
+  document.getElementById('button_ok_04').style.visibility = 'hidden';
 }
 
 function Ok04Button() {

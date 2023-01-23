@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  
+  background-color: darkmagenta;
 }
 canvas {
   display: block;
@@ -11,43 +11,25 @@ canvas {
   h3{
     color: rgb(255, 255, 255);
   }
-
-  .start{
-    position:absolute;
-    top: 50%;
-    right: 50%;
-    width: 50%;
-    height: 10%;
-  }
   .title{
-    position:absolute;
+    background-color: cornflowerblue;
     text-align: center;
   }
-  .return{
-    position:absolute;
-    top: 80%;
-    right: 80%;;
+  #face{
+    background-color: crimson;
+    text-align: center;
   }
-  .ok{
-    position:absolute;
-    top: 80%;
-    right: 20%;
-  }
-  .ex{
-    position:absolute;
-    top: 50%;
-    right: 50%;
-  }
-  #button_file{
-    position:absolute;
-    top: 70%;
-    right: 50%;
+  .file{
+    background-color: cyan;
+    text-align: center;
   }
   .tool{
-    position:absolute;
-    display: inline;
-    top: 50%;
-    right: 50%;
+    background-color: darkblue;
+    text-align: center;
+  }
+  .menu{
+    background-color: darkgoldenrod;
+    text-align: center;
   }
 }
 
@@ -56,26 +38,27 @@ canvas {
   h3{
     color: rgb(255, 0, 0);
   }
-
-  .start{
-    background-color: darkkhaki;
-  }
   .title{
     background-color: cornflowerblue;
+    text-align: center;
+    padding: 1px;
   }
   #face{
     background-color: crimson;
+    text-align: center;
   }
   .file{
     background-color: cyan;
+    text-align: center;
   }
   .tool{
     background-color: darkblue;
+    text-align: center;
   }
   .menu{
     background-color: darkgoldenrod;
+    text-align: center;
   }
- 
 }
 
 
