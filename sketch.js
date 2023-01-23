@@ -126,23 +126,23 @@ function setup() {
   }
 
   //ボタンの作成
-  select("#button_start").mouseClicked(StartButton);
-  select("#button_return_01").mouseClicked(Return01Button);
-  select("#button_ok_01").mouseClicked(Ok01Button);
-  select("#button_ex_01").mouseClicked(Ex01Button);
-  select("#button_tool_01").mouseClicked(Tool01Button);
-  select("#button_tool_02").mouseClicked(Tool02Button);
-  select("#button_return_02").mouseClicked(Return02Button);
-  select("#button_ok_02").mouseClicked(Ok02Button);
-  select("#button_ex_02").mouseClicked(Ex02Button);
-  select("#button_tool_03").mouseClicked(Tool03Button);
-  select("#button_return_03").mouseClicked(Return03Button);
-  select("#button_ok_03").mouseClicked(Ok03Button);
-  select("#button_ex_03").mouseClicked(Ex03Button);
-  select("#button_tool_04").mouseClicked(Tool04Button);
-  select("#button_tool_05").mouseClicked(Tool05Button);
-  select("#button_return_04").mouseClicked(Return04Button);
-  select("#button_ok_04").mouseClicked(Ok04Button);
+  select("#button_start").mousePressed(StartButton);
+  select("#button_return_01").mousePressed(Return01Button);
+  select("#button_ok_01").mousePressed(Ok01Button);
+  select("#button_ex_01").mousePressed(Ex01Button);
+  select("#button_tool_01").mousePressed(Tool01Button);
+  select("#button_tool_02").mousePressed(Tool02Button);
+  select("#button_return_02").mousePressed(Return02Button);
+  select("#button_ok_02").mousePressed(Ok02Button);
+  select("#button_ex_02").mousePressed(Ex02Button);
+  select("#button_tool_03").mousePressed(Tool03Button);
+  select("#button_return_03").mousePressed(Return03Button);
+  select("#button_ok_03").mousePressed(Ok03Button);
+  select("#button_ex_03").mousePressed(Ex03Button);
+  select("#button_tool_04").mousePressed(Tool04Button);
+  select("#button_tool_05").mousePressed(Tool05Button);
+  select("#button_return_04").mousePressed(Return04Button);
+  select("#button_ok_04").mousePressed(Ok04Button);
 
   document.getElementById('button_file').style.display = 'none';
   document.getElementById('title_01').style.display = 'none';
