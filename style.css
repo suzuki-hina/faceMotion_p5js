@@ -5,3 +5,47 @@ html, body {
 canvas {
   display: block;
 }
+
+h3{
+  color: rgb(255, 255, 255);
+}
+
+
+.start{
+  position:absolute;
+  top: 50%;
+	right: 50%;
+  width: 20%;
+  height: 20%;
+}
+.title{
+  position:absolute;
+  top: 20%;
+	right: 50%;
+}
+.return{
+  position:absolute;
+  top: 80%;
+	right: 80%;;
+}
+.ok{
+  position:absolute;
+  top: 80%;
+	right: 20%;
+}
+.ex{
+  position:absolute;
+  top: 50%;
+	right: 50%;
+}
+#button_file{
+  position:absolute;
+  top: 70%;
+	right: 50%;
+}
+.tool{
+  position:absolute;
+  display: inline;
+  top: 50%;
+	right: 50%;
+}
