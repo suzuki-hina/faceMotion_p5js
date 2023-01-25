@@ -62,6 +62,7 @@ function previewFile(file) {
     imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
     img = document.createElement("img"); // img要素を作成
     img.src = imageUrl; // 画像のURLをimg要素にセット
+    image = loadImage(imageUrl);
     if (windowWidth <= windowHeight) {
       img.width = windowWidth;
       img.height = windowWidth;
@@ -90,7 +91,6 @@ const handleFileSelect = () => {
 fileInput.addEventListener('change', handleFileSelect);
 
 
-
 function setup() {
   //ウィンドウのスワイプを止める
   window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
@@ -106,7 +106,7 @@ function setup() {
   let canvas = createCanvas(w * 9, w * 9, WEBGL);
   canvas.parent(face); 
   // image = loadImage("img/parkFace.jpg");
-  image = loadImage(imageUrl);
+  //image = loadImage(imageUrl);
 
   //ポイントの位置とテクスチャの配列設定
   //パーツを囲う図形の線上の点の配列設定
