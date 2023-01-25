@@ -1,6 +1,8 @@
 let face = document.getElementById('face');
 
+let imageUrl;
 let img;
+let image;
 
 const res = 2;
 const cols = 20 / res;
@@ -45,6 +47,49 @@ let startTime = Date.now();
 let moveTime = 0;
 let stopTime = 0;
 let isMove = false;
+let animChanger  = false;
+
+
+function previewFile(file) {
+  // プレビュー画像を追加する要素
+  const preview = document.getElementById('preview');
+
+  // FileReaderオブジェクトを作成
+  const reader = new FileReader();
+
+  // ファイルが読み込まれたときに実行する
+  reader.onload = function (e) {
+    imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
+    img = document.createElement("img"); // img要素を作成
+    img.src = imageUrl; // 画像のURLをimg要素にセット
+    if (windowWidth <= windowHeight) {
+      img.width = windowWidth;
+      img.height = windowWidth;
+    } else if (windowWidth > windowHeight) {
+      img.width = windowHeight;
+      img.height = windowHeight;
+    }
+    preview.appendChild(img); // #previewの中に追加
+  }
+
+  // いざファイルを読み込む
+  reader.readAsDataURL(file);
+}
+
+
+// <input>でファイルが選択されたときの処理
+const fileInput = document.getElementById('button_file');
+const handleFileSelect = () => {
+  const files = fileInput.files;
+  for (let i = 0; i < files.length; i++) {
+    previewFile(files[i]);
+  }
+  document.getElementById('face').style.display = 'none';
+  document.getElementById('preview').style.display = 'inline';
+}
+fileInput.addEventListener('change', handleFileSelect);
+
+
 
 function setup() {
   //ウィンドウのスワイプを止める
@@ -60,7 +105,8 @@ function setup() {
 
   let canvas = createCanvas(w * 9, w * 9, WEBGL);
   canvas.parent(face); 
-  img = loadImage("img/parkFace.jpg");
+  // image = loadImage("img/parkFace.jpg");
+  image = loadImage(imageUrl);
 
   //ポイントの位置とテクスチャの配列設定
   //パーツを囲う図形の線上の点の配列設定
@@ -135,7 +181,8 @@ function setup() {
   select("#button_return_04").mouseClicked(Return04Button);
   select("#button_ok_04").mouseClicked(Ok04Button);
 
-  document.getElementById('face').style.visibility = 'hidden';
+  document.getElementById('face').style.display = 'inline';
+  document.getElementById('preview').style.display = 'none';
 
   document.getElementById('button_file').style.display = 'none';
   document.getElementById('title_01').style.visibility = 'hidden';
@@ -171,32 +218,41 @@ function draw() {
   noStroke();
 
   //アニメーションの設定
-  if (isMove) {
-    moveTime = (Date.now() - startTime) / moveLimit;
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        let xKey = lK[i][j].x - iK[i][j].x;
-        let yKey = lK[i][j].y - iK[i][j].y;
-
-        let xKeyD = xKey * easeOutQuint(moveTime);
-        let yKeyD = yKey * easeOutQuint(moveTime);
-
-        pP[i][j].x = iK[i][j].x + xKeyD;
-        pP[i][j].y = iK[i][j].y + yKeyD;
-
-        if (Date.now() - startTime >= moveLimit) {
-          isMove = false;
-          stopTime = Date.now();
-          pP[i][j].x = lK[i][j].x;
-          pP[i][j].y = lK[i][j].y;
+  if(animChanger == true){
+    if (isMove) {
+      moveTime = (Date.now() - startTime) / moveLimit;
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          let xKey = lK[i][j].x - iK[i][j].x;
+          let yKey = lK[i][j].y - iK[i][j].y;
+  
+          let xKeyD = xKey * easeOutQuint(moveTime);
+          let yKeyD = yKey * easeOutQuint(moveTime);
+  
+          pP[i][j].x = iK[i][j].x + xKeyD;
+          pP[i][j].y = iK[i][j].y + yKeyD;
+  
+          if (Date.now() - startTime >= moveLimit) {
+            isMove = false;
+            stopTime = Date.now();
+            pP[i][j].x = lK[i][j].x;
+            pP[i][j].y = lK[i][j].y;
+          }
         }
       }
+    } else {
+      if (Date.now() - stopTime > moveLimit) {
+        startTime = Date.now();
+        isMove = true;
+      }
     }
-  } else {
+  }else{
     if (Date.now() - stopTime > moveLimit) {
       startTime = Date.now();
+      isMove = false;
     }
   }
+  
 
   //マウスによる移動
   if (markMouseMove == true) {
@@ -220,7 +276,7 @@ function draw() {
 
     for (let j = 0; j < rows - 1; j++) {
       beginShape(TRIANGLE_STRIP);
-      texture(img);
+      texture(image);
       for (let i = 0; i < cols; i++) {
         let x1 = pP[i][j].x;
         let y1 = pP[i][j].y;
@@ -475,15 +531,23 @@ function StartButton() {
 
 
 function Return01Button() {
+  document.getElementById('face').style.display = 'inline';
+  document.getElementById('preview').style.display = 'none';
+
   document.getElementById('button_start').style.display = 'inline';
   document.getElementById('face').style.visibility = 'hidden';
   document.getElementById('button_file').style.display = 'none';
   document.getElementById('title_01').style.visibility = 'hidden';
   document.getElementById('button_return_01').style.visibility = 'hidden';
   document.getElementById('button_ok_01').style.visibility = 'hidden';
+
+  var obj = document.getElementById("button_file");
+  obj.value = "";
 }
 
 function Ok01Button() {
+  document.getElementById('face').style.display = 'inline';
+  document.getElementById('preview').style.display = 'none';
   textureChanger = false;
 
   document.getElementById('button_file').style.display = 'none';
@@ -693,11 +757,13 @@ function Ex03Button() {
 function Tool04Button() {
   pointColorChanger = true;
   markColorChanger = false;
+  animChanger = true;
   isMove = true;
   stopTime = 0;
 }
 
 function Tool05Button() {
+  animChanger = false;
   isMove = false;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {

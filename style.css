@@ -1,22 +1,18 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: darkmagenta;
+  background-color: rgb(0, 0, 0);
 }
 canvas {
   display: block;
 }
 
 @media (orientation: landscape){
-
-}
-
-@media (orientation: portrait){
   h1{
-    color: rgb(255, 0, 0);
+    color: rgb(50, 50, 50);
   }
   .titleBox{
-    background-color: cornflowerblue;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -25,11 +21,11 @@ canvas {
     padding: 3%;
   }
   #face{
-    background-color: crimson;
+    background-color: rgb(255, 255, 255);
     text-align: center;
   }
   .toolBox{
-    background-color: darkblue;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -41,12 +37,62 @@ canvas {
     padding: 2%;
   }
   .menuBox_list{
-    background-color: rgb(11, 144, 184);
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
   }
   .menuBox{
-    background: rgb(184, 11, 175);
+    background: rgb(255, 255, 255);
+    width: 30%;
+    margin: 0;
+    padding: 0; 
+    text-align: center; 
+  }
+  .return{
+    padding: 10%;
+  }
+  .ok{
+    padding: 10%;
+  }
+
+}
+
+@media (orientation: portrait){
+  h1{
+    color: rgb(50, 50, 50);
+  }
+  .titleBox{
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
+  .title{
+    padding: 3%;
+  }
+  #face{
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+  }
+  .toolBox{
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
+  .tool{
+    padding: 2%;
+  }
+  .ex{
+    padding: 2%;
+  }
+  .menuBox_list{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+  }
+  .menuBox{
+    background: rgb(255, 255, 255);
     width: 30%;
     margin: 0;
     padding: 0; 
