@@ -46,19 +46,6 @@ let moveTime = 0;
 let stopTime = 0;
 let isMove = false;
 
-// //録画の変数
-// let recordingChander = false;
-
-//ボタンつくる
-// let moveSetButton;
-// let textureButton;
-// let resetButton;
-// let TdecisionButton;
-// let deformButton;
-// let DdecisionButton;
-// let animationButton;
-//let recordingButton;
-
 function setup() {
   //ウィンドウのスワイプを止める
   window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
@@ -210,19 +197,6 @@ function draw() {
       startTime = Date.now();
     }
   }
-
-  // //録画設定
-  // if(recordingChander == true){
-  //   const capture = P5Capture.getInstance();
-  //   if (capture.state === "idle") {
-  //     capture.start();
-  //     AnimationButton();
-  //   } else {
-  //     capture.stop();
-  //     DDecisionButton();
-  //   }
-  //   recordingChander = !recordingChander;
-  // }
 
   //マウスによる移動
   if (markMouseMove == true) {
@@ -490,17 +464,6 @@ function draw() {
   }
 }
 
-// isMove
-// markMouseMove
-// textureChanger
-// pointColorChanger
-// lineMouseMove
-// markAllMouseMove
-// lineColorChanger
-// markChanger
-// markColorChanger
-// pointPosSet
-
 function StartButton() {
   document.getElementById('button_start').style.display = 'none';
   document.getElementById('face').style.visibility = 'visible';
@@ -523,11 +486,14 @@ function Return01Button() {
 function Ok01Button() {
   textureChanger = false;
 
-  document.getElementById('button_file').style.visibility = 'hidden';
-  document.getElementById('title_01').style.visibility = 'hidden';
-  document.getElementById('button_return_01').style.visibility = 'hidden';
-  document.getElementById('button_ok_01').style.visibility = 'hidden';
-  document.getElementById('button_ex_01').style.visibility = 'visible';
+  document.getElementById('button_file').style.display = 'none';
+  document.getElementById('title_01').style.display = 'none';
+  document.getElementById('button_return_01').style.display = 'none';
+  document.getElementById('button_ok_01').style.display = 'none';
+
+  document.getElementById('button_ex_01').style.display = 'inline';
+  document.getElementById('title_02').style.display = 'inline';
+  document.getElementById('button_return_02').style.display = 'inline';
 }
 
 
@@ -541,12 +507,13 @@ function Ex01Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('button_ex_01').style.visibility = 'hidden';
-  document.getElementById('title_02').style.visibility = 'visible';
-  document.getElementById('button_tool_01').style.visibility = 'visible';
-  document.getElementById('button_tool_02').style.visibility = 'visible';
-  document.getElementById('button_return_02').style.visibility = 'visible';
-  document.getElementById('button_ok_02').style.visibility = 'visible';
+  document.getElementById('button_ex_01').style.display = 'none';
+
+  document.getElementById('title_02').style.display = 'inline';
+  document.getElementById('button_tool_01').style.display = 'inline';
+  document.getElementById('button_tool_02').style.display = 'inline';
+  document.getElementById('button_return_02').style.display = 'inline';
+  document.getElementById('button_ok_02').style.display = 'inline';
 }
 
 function Tool01Button() {
@@ -569,15 +536,17 @@ function Return02Button() {
   pointColorChanger = false;
   markColorChanger = false;
 
-  document.getElementById('button_file').style.visibility = 'visible';
-  document.getElementById('title_01').style.visibility = 'visible';
-  document.getElementById('button_return_01').style.visibility = 'visible';
-  document.getElementById('button_ok_01').style.visibility = 'visible';
-  document.getElementById('title_02').style.visibility = 'hidden';
-  document.getElementById('button_tool_01').style.visibility = 'hidden';
-  document.getElementById('button_tool_02').style.visibility = 'hidden';
-  document.getElementById('button_return_02').style.visibility = 'hidden';
-  document.getElementById('button_ok_02').style.visibility = 'hidden';
+  document.getElementById('button_file').style.display = 'inline';
+  document.getElementById('title_01').style.display = 'inline';
+  document.getElementById('button_return_01').style.display = 'inline';
+  document.getElementById('button_ok_01').style.display = 'inline';
+
+  document.getElementById('button_ex_01').style.display = 'none';
+  document.getElementById('title_02').style.display = 'none';
+  document.getElementById('button_tool_01').style.display = 'none';
+  document.getElementById('button_tool_02').style.display = 'none';
+  document.getElementById('button_return_02').style.display = 'none';
+  document.getElementById('button_ok_02').style.display = 'none';
 }
 
 function Ok02Button() {
@@ -591,12 +560,15 @@ function Ok02Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('title_02').style.visibility = 'hidden';
-  document.getElementById('button_tool_01').style.visibility = 'hidden';
-  document.getElementById('button_tool_02').style.visibility = 'hidden';
-  document.getElementById('button_return_02').style.visibility = 'hidden';
-  document.getElementById('button_ok_02').style.visibility = 'hidden';
-  document.getElementById('button_ex_02').style.visibility = 'visible';
+  document.getElementById('title_02').style.display = 'none';
+  document.getElementById('button_tool_01').style.display = 'none';
+  document.getElementById('button_tool_02').style.display = 'none';
+  document.getElementById('button_return_02').style.display = 'none';
+  document.getElementById('button_ok_02').style.display = 'none';
+
+  document.getElementById('button_ex_02').style.display = 'inline';
+  document.getElementById('title_03').style.display = 'inline';
+  document.getElementById('button_return_03').style.display = 'inline';
 }
 
 function Ex02Button() {
@@ -618,11 +590,11 @@ function Ex02Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('button_ex_02').style.visibility = 'hidden';
-  document.getElementById('title_03').style.visibility = 'visible';
-  document.getElementById('button_tool_03').style.visibility = 'visible';
-  document.getElementById('button_return_03').style.visibility = 'visible';
-  document.getElementById('button_ok_03').style.visibility = 'visible';
+  document.getElementById('button_ex_02').style.display = 'none';
+  document.getElementById('title_03').style.display = 'inline';
+  document.getElementById('button_tool_03').style.display = 'inline';
+  document.getElementById('button_return_03').style.display = 'inline';
+  document.getElementById('button_ok_03').style.display = 'inline';
 }
 
 function Tool03Button() {
@@ -663,15 +635,17 @@ function Return03Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('title_02').style.visibility = 'visible';
-  document.getElementById('button_tool_01').style.visibility = 'visible';
-  document.getElementById('button_tool_02').style.visibility = 'visible';
-  document.getElementById('button_return_02').style.visibility = 'visible';
-  document.getElementById('button_ok_02').style.visibility = 'visible';
-  document.getElementById('title_03').style.visibility = 'hidden';
-  document.getElementById('button_tool_03').style.visibility = 'hidden';
-  document.getElementById('button_return_03').style.visibility = 'hidden';
-  document.getElementById('button_ok_03').style.visibility = 'hidden';
+  document.getElementById('title_02').style.display = 'inline';
+  document.getElementById('button_tool_01').style.display = 'inline';
+  document.getElementById('button_tool_02').style.display = 'inline';
+  document.getElementById('button_return_02').style.display = 'inline';
+  document.getElementById('button_ok_02').style.display = 'inline';
+
+  document.getElementById('button_ex_02').style.display = 'none';
+  document.getElementById('title_03').style.display = 'none';
+  document.getElementById('button_tool_03').style.display = 'none';
+  document.getElementById('button_return_03').style.display = 'none';
+  document.getElementById('button_ok_03').style.display = 'none';
 }
 
 function Ok03Button() {
@@ -687,11 +661,13 @@ function Ok03Button() {
   markColorChanger = true;
   markMouseMove = true;
 
-  document.getElementById('title_03').style.visibility = 'hidden';
-  document.getElementById('button_tool_03').style.visibility = 'hidden';
-  document.getElementById('button_return_03').style.visibility = 'hidden';
-  document.getElementById('button_ok_03').style.visibility = 'hidden';
-  document.getElementById('button_ex_03').style.visibility = 'visible';
+  document.getElementById('title_03').style.display = 'none';
+  document.getElementById('button_tool_03').style.display = 'none';
+  document.getElementById('button_return_03').style.display = 'none';
+  document.getElementById('button_ok_03').style.display = 'none';
+  document.getElementById('button_ex_03').style.display = 'inline';
+  document.getElementById('title_04').style.display = 'inline';
+  document.getElementById('button_return_04').style.display = 'inline';
 }
 
 
@@ -706,12 +682,12 @@ function Ex03Button() {
     }
   }
 
-  document.getElementById('button_ex_03').style.visibility = 'hidden';
-  document.getElementById('title_04').style.visibility = 'visible';
-  document.getElementById('button_tool_04').style.visibility = 'visible';
-  document.getElementById('button_tool_05').style.visibility = 'visible';
-  document.getElementById('button_return_04').style.visibility = 'visible';
-  document.getElementById('button_ok_04').style.visibility = 'visible';
+  document.getElementById('button_ex_03').style.display = 'none';
+  document.getElementById('title_04').style.display = 'inline';
+  document.getElementById('button_tool_04').style.display = 'inline';
+  document.getElementById('button_tool_05').style.display = 'inline';
+  document.getElementById('button_return_04').style.display = 'inline';
+  document.getElementById('button_ok_04').style.display = 'inline';
 }
 
 function Tool04Button() {
@@ -749,15 +725,16 @@ function Return04Button() {
   pointColorChanger = true;
   markColorChanger = true;
 
-  document.getElementById('title_03').style.visibility = 'visible';
-  document.getElementById('button_tool_03').style.visibility = 'visible';
-  document.getElementById('button_return_03').style.visibility = 'visible';
-  document.getElementById('button_ok_03').style.visibility = 'visible';
-  document.getElementById('title_04').style.visibility = 'hidden';
-  document.getElementById('button_tool_04').style.visibility = 'hidden';
-  document.getElementById('button_tool_05').style.visibility = 'hidden';
-  document.getElementById('button_return_04').style.visibility = 'hidden';
-  document.getElementById('button_ok_04').style.visibility = 'hidden';
+  document.getElementById('title_03').style.display = 'inline';
+  document.getElementById('button_tool_03').style.display = 'inline';
+  document.getElementById('button_return_03').style.display = 'inline';
+  document.getElementById('button_ok_03').style.display = 'inline';
+  document.getElementById('button_ex_03').style.display = 'none';
+  document.getElementById('title_04').style.display = 'none';
+  document.getElementById('button_tool_04').style.display = 'none';
+  document.getElementById('button_tool_05').style.display = 'none';
+  document.getElementById('button_return_04').style.display = 'none';
+  document.getElementById('button_ok_04').style.display = 'none';
 }
 
 function Ok04Button() {
