@@ -302,8 +302,8 @@ function draw() {
         strokeWeight(10);
         point(pP[i][j].x, pP[i][j].y);
 
-        stroke(255, 0, 255);
-        strokeWeight(5);
+        stroke(255);
+        strokeWeight(0);
         point(pT[i][j].x, pT[i][j].y);
       }
     }
@@ -419,12 +419,12 @@ function draw() {
                     ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
                   }
                   else if (markNum / 3 <= k && k < markNum / 3 * 2 - 1) {
-                    fill(0, 255, 0);
+                    fill(255, 0, 0);
                     noStroke();
                     ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
                   }
                   else if (markNum / 3 * 2 <= k && k < markNum - 1) {
-                    fill(0, 0, 255);
+                    fill(255, 0, 0);
                     noStroke();
                     ellipse(pT[i][j].x, pT[i][j].y, 10, 10);
                   }
@@ -568,8 +568,8 @@ function Ex01Button() {
   lineColorChanger = true;
   markChanger = true;
 
-  pointColorChanger = true;
-  markColorChanger = true;
+  pointColorChanger = false;
+  markColorChanger = false;
 
   document.getElementById('button_ex_01').style.display = 'none';
 
@@ -621,7 +621,7 @@ function Ok02Button() {
   lineMouseMove = false;
   markAllMouseMove = false;
 
-  pointColorChanger = true;
+  pointColorChanger = false;
   markColorChanger = true;
 
   document.getElementById('title_02').style.display = 'none';
@@ -696,8 +696,8 @@ function Return03Button() {
   lineMouseMove = false;
   markAllMouseMove = true;
 
-  pointColorChanger = true;
-  markColorChanger = true;
+  pointColorChanger = false;
+  markColorChanger = false;
 
   document.getElementById('title_02').style.display = 'inline';
   document.getElementById('button_tool_01').style.display = 'inline';
@@ -721,8 +721,8 @@ function Ok03Button() {
     }
   }
 
-  pointColorChanger = true;
-  markColorChanger = true;
+  pointColorChanger = false;
+  markColorChanger = false;
   markMouseMove = true;
 
   document.getElementById('title_03').style.display = 'none';
@@ -755,7 +755,7 @@ function Ex03Button() {
 }
 
 function Tool04Button() {
-  pointColorChanger = true;
+  pointColorChanger = false;
   markColorChanger = false;
   animChanger = true;
   isMove = true;
