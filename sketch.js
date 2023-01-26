@@ -188,6 +188,7 @@ function setup() {
   document.getElementById('img_ex_01').style.display = 'none';
   document.getElementById('img_ex_02').style.display = 'none';
   document.getElementById('img_ex_03').style.display = 'none';
+  
 
   document.getElementById('button_file').style.display = 'none';
   document.getElementById('title_01').style.visibility = 'hidden';
