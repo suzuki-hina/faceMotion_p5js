@@ -91,6 +91,7 @@ const handleFileSelect = () => {
 fileInput.addEventListener('change', handleFileSelect);
 
 
+
 function setup() {
   //ウィンドウのスワイプを止める
   window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
@@ -183,6 +184,10 @@ function setup() {
 
   document.getElementById('face').style.display = 'inline';
   document.getElementById('preview').style.display = 'none';
+
+  document.getElementById('img_ex_01').style.display = 'none';
+  document.getElementById('img_ex_02').style.display = 'none';
+  document.getElementById('img_ex_03').style.display = 'none';
 
   document.getElementById('button_file').style.display = 'none';
   document.getElementById('title_01').style.visibility = 'hidden';
@@ -546,8 +551,9 @@ function Return01Button() {
 }
 
 function Ok01Button() {
-  document.getElementById('face').style.display = 'inline';
+  document.getElementById('face').style.display = 'none';
   document.getElementById('preview').style.display = 'none';
+  document.getElementById('img_ex_01').style.display = 'inline';
   textureChanger = false;
 
   document.getElementById('button_file').style.display = 'none';
@@ -570,6 +576,9 @@ function Ex01Button() {
 
   pointColorChanger = false;
   markColorChanger = false;
+
+  document.getElementById('face').style.display = 'inline';
+  document.getElementById('img_ex_01').style.display = 'none';
 
   document.getElementById('button_ex_01').style.display = 'none';
 
@@ -624,6 +633,9 @@ function Ok02Button() {
   pointColorChanger = false;
   markColorChanger = true;
 
+  document.getElementById('face').style.display = 'none';
+  document.getElementById('img_ex_02').style.display = 'inline';
+
   document.getElementById('title_02').style.display = 'none';
   document.getElementById('button_tool_01').style.display = 'none';
   document.getElementById('button_tool_02').style.display = 'none';
@@ -636,6 +648,9 @@ function Ok02Button() {
 }
 
 function Ex02Button() {
+  document.getElementById('face').style.display = 'inline';
+  document.getElementById('img_ex_02').style.display = 'none';
+
   textureChanger = true;
   pointPosSet = false;
 
@@ -713,6 +728,9 @@ function Return03Button() {
 }
 
 function Ok03Button() {
+  document.getElementById('face').style.display = 'none';
+  document.getElementById('img_ex_03').style.display = 'inline';
+
   textureChanger = false;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -737,6 +755,9 @@ function Ok03Button() {
 
 
 function Ex03Button() {
+  document.getElementById('face').style.display = 'inline';
+  document.getElementById('img_ex_03').style.display = 'none';
+
   textureChanger = true;
   isMove = false;
   for (let i = 0; i < cols; i++) {
@@ -745,6 +766,7 @@ function Ex03Button() {
       pP[i][j].y = iK[i][j].y;
     }
   }
+  
 
   document.getElementById('button_ex_03').style.display = 'none';
   document.getElementById('title_04').style.display = 'inline';
