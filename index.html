@@ -5,15 +5,14 @@
     <!--<script src="https://cdn.jsdelivr.net/npm/p5.capture@1.1.0/dist/p5.capture.umd.min.js"></script>-->
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
-
   </head>
   
   <body>
     <div class="titleBox">
-      <h1 class="title" id="title_01">1. 写真を選ぶ</h3>
-      <h1 class="title" id="title_02">2. 目と口に図形を合わせる</h3>
-      <h1 class="title" id="title_03">3. 好きな表情に変形させる</h3>
-      <h1 class="title" id="title_04">4. 動かしてみる</h3>
+      <h1 class="title" id="title_01">1. 写真を選ぶ</h1>
+      <h1 class="title" id="title_02">2. 目と口に図形を合わせる</h1>
+      <h1 class="title" id="title_03">3. 好きな表情に変形させる</h1>
+      <h1 class="title" id="title_04">4. 動かしてみる</h1>
     </div>
     
     <div id="face"></div>
@@ -21,19 +20,19 @@
     <div id="preview"></div>
 
     <div class="exBox">
-      <input type="image" class="exImg" id="img_ex_01" src="img/1.svg" alt="ex">
-      <input type="image" class="exImg" id="img_ex_02" src="img/2.svg" alt="ex">
-      <input type="image" class="exImg" id="img_ex_03" src="img/3.svg" alt="ex">
+      <input type="image" class="exImg" id="img_ex_01" src="img/1.svg" alt="exImg" width=windowWidth height=width>
+      <input type="image" class="exImg" id="img_ex_02" src="img/2.svg" alt="exImg" width=windowWidth height=width>
+      <input type="image" class="exImg" id="img_ex_03" src="img/3.svg" alt="exImg" width=windowWidth height=width>
     </div>
 
     <div class="toolBox">  
       <button class="tool" id="button_start">はじめる</button>
       <input type="file" class="tool" id="button_file" accept=".png, .jpeg, .jpg">
-      <input type="image" class="tool" id="button_tool_01" src="img/zentai.svg" alt="ex" width=10% height=width>
-      <input type="image" class="tool" id="button_tool_02" src="img/itten.svg" alt="ex" width=10% height=width>
-      <input type="image" class="tool" id="button_tool_03" src="img/batu.svg" alt="ex" width=10% height=width>
-      <input type="image" class="tool" id="button_tool_04" src="img/saisei.svg" alt="ex" width=10% height=width>
-      <input type="image" class="tool" id="button_tool_05" src="img/teisi.svg" alt="ex" width=10% height=width>
+      <input type="image" class="tool" id="button_tool_01" src="img/zentai.svg" alt="tool" width=10% height=width>
+      <input type="image" class="tool" id="button_tool_02" src="img/itten.svg" alt="tool" width=10% height=width>
+      <input type="image" class="tool" id="button_tool_03" src="img/batu.svg" alt="tool" width=10% height=width>
+      <input type="image" class="tool" id="button_tool_04" src="img/saisei.svg" alt="tool" width=10% height=width>
+      <input type="image" class="tool" id="button_tool_05" src="img/teisi.svg" alt="tool" width=10% height=width>
 
       <input type="image" class="ex" id="button_ex_01" src="img/batu.svg" alt="ex" width=10% height=width>
       <input type="image" class="ex" id="button_ex_02" src="img/batu.svg" alt="ex" width=10% height=width>
@@ -55,9 +54,6 @@
         <input type="image" class="ok" id="button_ok_04" src="img/kanryou.svg" alt="ok" width=50% height=width>
       </div>
     </div>
-
-    
-    
 
     <script src="sketch.js"></script>
 

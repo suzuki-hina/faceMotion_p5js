@@ -42,7 +42,7 @@ let lK = [];
 const easeOutQuint = function (t) {
   return 1 + --t * t * t * t * t;
 };
-const moveLimit = 1000;
+const moveLimit = 800;
 let startTime = Date.now();
 let moveTime = 0;
 let stopTime = 0;
@@ -62,6 +62,8 @@ function previewFile(file) {
     imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
     img = document.createElement("img"); // img要素を作成
     img.src = imageUrl; // 画像のURLをimg要素にセット
+
+    image = loadImage(imageUrl);
 
     if (windowWidth <= windowHeight) {
       img.width = windowWidth;
@@ -91,7 +93,6 @@ const handleFileSelect = () => {
 fileInput.addEventListener('change', handleFileSelect);
 
 
-
 function setup() {
   //ウィンドウのスワイプを止める
   window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
@@ -106,8 +107,6 @@ function setup() {
 
   let canvas = createCanvas(w * 9, w * 9, WEBGL);
   canvas.parent(face); 
-  image = loadImage("img/parkFace.jpg");
-  //image = loadImage(imageUrl);
 
   //ポイントの位置とテクスチャの配列設定
   //パーツを囲う図形の線上の点の配列設定
@@ -243,6 +242,9 @@ function draw() {
             stopTime = Date.now();
             pP[i][j].x = lK[i][j].x;
             pP[i][j].y = lK[i][j].y;
+
+            pP[i][j].x = iK[i][j].x;
+            pP[i][j].y = iK[i][j].y;
           }
         }
       }
